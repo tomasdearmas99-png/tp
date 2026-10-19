@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steve Ditko | Marvel</title>
+  <link rel="icon" type="image/png" href="../../IM_BUSQUEDA/icono.jpg">
+  <link rel="stylesheet" href="../../CSS/stan_lee.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="wordmark">MARVEL</span>
+    <a class="topbar__back" href="../../index.html">Volver a los creadores</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="hero__subtitle">El padre del Universo Marvel</p>
+        <h1 class="hero__name">Steve Ditko</h1>
+        <p class="hero__bio">
+          Stanley Martin Lieber (1922-2018) llegó a la editorial que luego sería Marvel siendo un
+          adolescente y terminó convirtiéndola en lo que es hoy. Junto a dibujantes como Jack Kirby
+          y Steve Ditko creó héroes con problemas reales: dudas, facturas y errores. Cerraba sus
+          columnas con una palabra: ¡Excelsior!
+        </p>
+        <dl class="hero__meta">
+          <div><dt>Rol</dt><dd>Guionista / Editor</dd></div>
+          <div><dt>Etapa</dt><dd>Edad de Plata</dd></div>
+        </dl>
+      </div>
+
+      <figure class="hero__portrait">
+        <img src="../../IM_CREADORES/Stan_Lee.webp" alt="Retrato de Stan Lee">
+      </figure>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Creaciones</h2>
+      <div class="tabs" id="tabs"></div>
+      <div id="paneles"></div>
+    </section>
+  </main>
+
+  <footer class="footer"> 
+    <p class="footer__quote">¡Excelsior!</p>
+    <a class="footer__link" href="/web/">Volver a Marvel</a>
+  </footer>
+
+  <script>
+    const COMICS = '../../IM_PERSONAJES/IM_PERSONAJES_COMICS/';
+
+    const creaciones = [
+      {
+        nombre: 'Spider-Man', tag: 'Amazing Fantasy #15, 1962', img: 'SPIDER_MAN_COMICS.png',
+        texto: 'Un adolescente con poderes y problemas de dinero, de estudios y de culpa. Spider-Man rompió con la idea del ayudante joven y convirtió al héroe en alguien con quien cualquiera podía identificarse.',
+        autores: 'Creado con Steve Ditko.'
+      },
+      {
+        nombre: 'Hulk', tag: 'The Incredible Hulk #1, 1962', img: 'HULK_COMICS.png',
+        texto: 'El científico Bruce Banner se transforma en una fuerza que no controla. Hulk habla del miedo a perder el control y de la rabia que cada uno lleva dentro.',
+        autores: 'Creado con Jack Kirby.'
+      },
+      {
+        nombre: 'Iron Man', tag: 'Tales of Suspense #39, 1963', img: 'IRON_MAN_COMICS.png',
+        texto: 'Tony Stark es un industrial brillante y arrogante que debe aprender a ser mejor persona dentro de su armadura. Un héroe con defectos a propósito.',
+        autores: 'Creado con Larry Lieber, Don Heck y Jack Kirby.'
+      },
+      {
+        nombre: 'Thor', tag: 'Journey into Mystery #83, 1962', img: 'THOR_COMIC.jpeg',
+        texto: 'El dios del trueno de la mitología nórdica, llevado a los cómics modernos. Thor trajo a Marvel un costado épico y cósmico.',
+        autores: 'Creado con Jack Kirby y Larry Lieber.'
+      },
+      {
+        nombre: 'Doctor Strange', tag: 'Strange Tales #110, 1963', img: 'DR_STRANGE_COMIC.png',
+        texto: 'Un cirujano arrogante pierde sus manos y encuentra la magia. Doctor Strange abrió las puertas de Marvel a otras dimensiones y a un estilo visual psicodélico.',
+        autores: 'Creado con Steve Ditko.'
+      }
+    ];
+
+    const tabs = document.getElementById('tabs');
+    const paneles = document.getElementById('paneles');
+
+    creaciones.forEach((c, i) => {
+      const tab = document.createElement('button');
+      tab.className = 'tab';
+      tab.title = c.nombre;
+      tab.innerHTML = '<img src="' + COMICS + c.img + '" alt="' + c.nombre + '">';
+      tab.onclick = () => seleccionar(i);
+      tabs.appendChild(tab);
+
+      const panel = document.createElement('div');
+      panel.className = 'panel';
+      panel.innerHTML =
+        '<div class="panel__art"><img src="' + COMICS + c.img + '" alt="' + c.nombre + '"></div>' +
+        '<div><p class="panel__tag">' + c.tag + '</p>' +
+        '<h3 class="panel__name">' + c.nombre + '</h3>' +
+        '<p>' + c.texto + '</p>' +
+        '<p class="panel__creators">' + c.autores + '</p></div>';
+      paneles.appendChild(panel);
+    });
+
+    function seleccionar(i) {
+      [...tabs.children].forEach((t, k) => t.setAttribute('aria-selected', k === i));
+      [...paneles.children].forEach((p, k) => p.hidden = k !== i);
+    }
+
+    seleccionar(0);
+  </script>
+</body>
+</html>

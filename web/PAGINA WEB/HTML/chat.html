@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvel - Chat IA</title>
+  <link rel="icon" type="image/png" href="../../IM_BUSQUEDA/icono.jpg">
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/auth.css">
+  <link rel="stylesheet" href="../../CSS/chat.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__left">
+    <a href="../../index.html" class="wordmark">MARVEL</a>
+  </div>
+  <nav class="topbar__links">
+    <a href="../../index.html">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="cofres.html">Cofres</a>
+    <a href="chat.html">Chat IA</a>
+    <a href="intercambios.html">Intercambios</a>
+    <a href="perfil.html">Perfil</a>
+  </nav>
+</header>
+
+<main class="chat-main">
+  <div class="hero-band">
+    <p class="hero-band__eyebrow">Asistente de la web</p>
+    <h1>CHAT <span>IA</span></h1>
+  </div>
+
+  <section class="chat" aria-label="Chat con el asistente">
+    <div class="chat__mensajes" id="chat-mensajes" aria-live="polite"></div>
+
+    <div class="chat__sugerencias" id="chat-sugerencias">
+      <button type="button">¿Qué es Marvel?</button>
+      <button type="button">¿Quiénes son los Vengadores?</button>
+      <button type="button">¿Qué secciones tiene la web?</button>
+      <button type="button">¿Quiénes crearon Marvel?</button>
+    </div>
+
+    <div class="chat__form">
+      <input id="chat-input" type="text" maxlength="500" autocomplete="off"
+             placeholder="Preguntame sobre esta web…" aria-label="Tu mensaje">
+      <button type="button" id="chat-enviar">Enviar</button>
+    </div>
+    <p class="chat__aviso">Este asistente solo responde sobre esta web. Puede cometer errores.</p>
+  </section>
+</main>
+
+<script src="../../JS/chat.js"></script>
+<script src="../../JS/auth.js"></script>
+</body>
+</html>
