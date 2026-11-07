@@ -23,30 +23,26 @@ $id_usuario = intval($_SESSION['id_usuario']);
 $mensaje_consola = "";
 
 // ========================================================
-// 1. ACCIÓN: SUBIR ARCHIVO LOCAL DESDE LA COMPUTADORA
+// 1. ACCIÓN CENTRALIZADA: EQUIPAR (MARCO, TÍTULO O FONDO)
 // ========================================================
-if (isset($_FILES['avatar_subido']) && $_FILES['avatar_subido']['error'] == 0) {
-    $carpeta_destino = "../../IM_USUARIOS/";
+if (isset($_GET['equipar'])) {
+    $id_item_equipar = intval($_GET['equipar']);
     
-    if (!file_exists($carpeta_destino)) {
-        mkdir($carpeta_destino, 0777, true);
-    }
+    // Verificamos la categoría real del cosmético que el usuario quiere equipar
+    $verificar = $conexion_perfil->query("SELECT categoria, nombre FROM tienda_cosmeticos WHERE id_item = $id_item_equipar");
+    
+    if ($verificar && $verificar->num_rows > 0) {
+        $item = $verificar->fetch_assoc();
+        $categoria = $item['categoria'];
+        $nombre_item = $item['nombre'];
 
-    $extension = strtolower(pathinfo($_FILES['avatar_subido']['name'], PATHINFO_EXTENSION));
-    $formatos_permitidos = ['jpg', 'jpeg', 'png', 'webp'];
-
-    if (in_array($extension, $formatos_permitidos)) {
-        $nombre_final = "user_" . $id_usuario . "." . $extension;
-        $ruta_completa = $carpeta_destino . $nombre_final;
-
-        if (move_uploaded_file($_FILES['avatar_subido']['tmp_name'], $ruta_completa)) {
-            $_SESSION['avatar_actual'] = $ruta_completa;
-            $mensaje_consola = "¡Enlace biométrico establecido! Nueva foto de perfil cargada.";
-        } else {
-            $mensaje_consola = "Error al guardar el archivo en el servidor local XAMPP.";
-        }
-    } else {
-        $mensaje_consola = "Formato inválido. Por favor sube una imagen JPG, PNG o WEBP.";
+        // 1. Desequipar cualquier cosmético de la MISMA categoría para este usuario
+        $conexion_perfil->query("UPDATE inventario_cosmeticos ic INNER JOIN tienda_cosmeticos t ON ic.id_item = t.id_item SET ic.equipado = 0 WHERE ic.id_usuario = $id_usuario AND t.categoria = '$categoria'");
+        
+        // 2. Equipar el cosmético seleccionado (poner equipado = 1)
+        $conexion_perfil->query("UPDATE inventario_cosmeticos SET equipado = 1 WHERE id_usuario = $id_usuario AND id_item = $id_item_equipar");
+        
+        $mensaje_consola = "¡Protocolo activado! Has equipado: " . $nombre_item;
     }
 }
 
@@ -55,29 +51,12 @@ if (isset($_FILES['avatar_subido']) && $_FILES['avatar_subido']['error'] == 0) {
 // ========================================================
 if (isset($_POST['avatar_url_predeterminado']) && !empty($_POST['avatar_url_predeterminado'])) {
     $_SESSION['avatar_actual'] = $_POST['avatar_url_predeterminado'];
-    $mensaje_consola = "Foto de perfil actualizada con el héroe seleccionado.";
+    $mensaje_consola = "Avatar de perfil sincronizado.";
 }
 
 // ========================================================
-// 3. ACCIÓN: EQUIPAR UN COSMÉTICO
+// 3. CONSULTAS GENERALES DE RENDERIZADO
 // ========================================================
-if (isset($_GET['equipar'])) {
-    $id_item_equipar = intval($_GET['equipar']);
-    $verificar = $conexion_perfil->query("SELECT categoria, nombre FROM inventario_cosmeticos ic INNER JOIN tienda_cosmeticos t ON ic.id_item = t.id_item WHERE ic.id_usuario = $id_usuario AND ic.id_item = $id_item_equipar");
-    
-    if ($verificar && $verificar->num_rows > 0) {
-        $item = $verificar->fetch_assoc();
-        $categoria = $item['categoria'];
-        $nombre_item = $item['nombre'];
-
-        $conexion_perfil->query("UPDATE inventario_cosmeticos ic INNER JOIN tienda_cosmeticos t ON ic.id_item = t.id_item SET ic.equipado = 0 WHERE ic.id_usuario = $id_usuario AND t.categoria = '$categoria'");
-        $conexion_perfil->query("UPDATE inventario_cosmeticos SET equipado = 1 WHERE id_usuario = $id_usuario AND id_item = $id_item_equipar");
-        
-        $mensaje_consola = "¡Equipado con éxito!: " . $nombre_item;
-    }
-}
-
-// CONSULTAS BASE DE DATOS
 $datos_usuario = $conexion_perfil->query("SELECT username, monedas_marvel FROM usuarios WHERE id_usuario = $id_usuario")->fetch_assoc();
 
 $avatar_final = "../../IM_BUSQUEDA/LOGITO.jpg";
@@ -85,9 +64,12 @@ if (isset($_SESSION['avatar_actual'])) {
     $avatar_final = $_SESSION['avatar_actual'];
 }
 
+// Valores por defecto si el usuario no tiene nada equipado
 $marco_equipado = ""; 
 $titulo_equipado = "RECLUTA DE S.H.I.E.L.D.";
+$fondo_equipado_url = ""; 
 
+// Buscar todos los cosméticos equipados actualmente de forma dinámica
 $consulta_equipados = $conexion_perfil->query("
     SELECT t.id_item, t.nombre, t.categoria 
     FROM inventario_cosmeticos ic 
@@ -95,26 +77,39 @@ $consulta_equipados = $conexion_perfil->query("
     WHERE ic.id_usuario = $id_usuario AND ic.equipado = 1
 ");
 
-while ($eq = $consulta_equipados->fetch_assoc()) {
-    if ($eq['categoria'] === 'Marco') {
-        if (intval($eq['id_item']) === 1) {
-            $marco_equipado = "../../IM_COSMETICOS/Marco_Ojo_Halcon_Cosmetico.png";
-        } else {
-            $marco_equipado = "../../IM_COSMETICOS/item_" . $eq['id_item'] . ".png";
+if ($consulta_equipados) {
+    while ($eq = $consulta_equipados->fetch_assoc()) {
+        if ($eq['categoria'] === 'Marco') {
+            if (intval($eq['id_item']) === 1) {
+                $marco_equipado = "../../IM_COSMETICOS/Marco_Ojo_Halcon_Cosmetico.png";
+            } else {
+                $marco_equipado = "../../IM_COSMETICOS/item_" . $eq['id_item'] . ".png";
+            }
+        } elseif ($eq['categoria'] === 'Titulo') {
+            $titulo_equipado = $eq['nombre'];
+        } elseif ($eq['categoria'] === 'Fondo') {
+            // Carga la ruta de la imagen correspondiente de tu tienda (ej: item_5.png)
+            $fondo_equipado_url = "../../IM_COSMETICOS/item_" . $eq['id_item'] . ".png";
         }
-    } elseif ($eq['categoria'] === 'Titulo') {
-        $titulo_equipado = $eq['nombre'];
     }
 }
 
+// Cargar todo el inventario de cosméticos comprados (marcos, títulos, fondos)
 $inventario = $conexion_perfil->query("
     SELECT t.id_item, t.nombre, t.categoria, ic.equipado 
     FROM inventario_cosmeticos ic 
     INNER JOIN tienda_cosmeticos t ON ic.id_item = t.id_item 
     WHERE ic.id_usuario = $id_usuario
 ");
-?>
 
+// Cargar mazo de cartas obtenidas del cofre
+$mis_cartas = $conexion_perfil->query("
+    SELECT c.nombre_personaje, c.rareza, c.ataque, c.defensa, c.ruta_imagen_carta 
+    FROM usuario_cartas uc 
+    INNER JOIN cartas c ON uc.id_carta = c.id_carta 
+    WHERE uc.id_usuario = $id_usuario
+");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -135,8 +130,9 @@ $inventario = $conexion_perfil->query("
     </div>
   </header>
 
+  <!-- BANNER SUPERIOR DINÁMICO: Si hay un fondo equipado, lo renderiza como imagen de fondo -->
   <div class="perfil-cabecera">
-    <div class="perfil-banner"></div>
+    <div class="perfil-banner" style="<?php echo !empty($fondo_equipado_url) ? "background-image: url('$fondo_equipado_url'); background-size: cover; background-position: center;" : ""; ?>"></div>
 
     <div class="perfil-info-bloque">
       <div class="avatar-posicionador">
@@ -147,7 +143,7 @@ $inventario = $conexion_perfil->query("
       </div>
 
       <h2 class="user-tag-name">@<?php echo htmlspecialchars($datos_usuario['username']); ?></h2>
-      <p class="user-sub-status"><?php echo $titulo_equipado; ?></p>
+      <p class="user-sub-status"><?php echo htmlspecialchars($titulo_equipado); ?></p>
       
       <div class="user-wallet">
         Fondos disponibles: <strong><?php echo $datos_usuario['monedas_marvel']; ?> Monedas</strong>
@@ -165,14 +161,14 @@ $inventario = $conexion_perfil->query("
       <button class="pestana-link" onclick="abrirPestana(event, 'tab-tarjetas')">Tarjetas</button>
     </div>
 
-    <!-- SECCIÓN 1: COSMÉTICOS -->
+    <!-- PESTAÑA 1: COSMÉTICOS (MUESTRA MARCOS, TÍTULOS Y FONDOS COMPRADOS) -->
     <div id="tab-cosmeticos" class="seccion-tab activa">
       <div class="grid-items-inventario">
         <?php if ($inventario && $inventario->num_rows > 0): ?>
             <?php while($item = $inventario->fetch_assoc()): ?>
                 <div class="card-item-propio <?php echo $item['equipado'] ? 'equipado-si' : ''; ?>">
-                    <div class="card-item-tipo"><?php echo $item['categoria']; ?></div>
-                    <h4 class="card-item-title"><?php echo $item['nombre']; ?></h4>
+                    <div class="card-item-tipo"><?php echo htmlspecialchars($item['categoria']); ?></div>
+                    <h4 class="card-item-title"><?php echo htmlspecialchars($item['nombre']); ?></h4>
                     
                     <?php if ($item['equipado']): ?>
                         <button class="btn-perfil-action btn-equipado">Equipado</button>
@@ -212,18 +208,31 @@ $inventario = $conexion_perfil->query("
       </div>
     </div>
 
-    <!-- SECCIÓN 2: TARJETAS -->
+    <!-- PESTAÑA 2: TARJETAS COLECTADAS -->
     <div id="tab-tarjetas" class="seccion-tab">
       <div class="grid-items-inventario">
-        <div class="card-item-propio" style="opacity: 0.3;">
-            <div class="card-item-tipo">Carta Coleccionable</div>
-            <h4 class="card-item-title">Iron Man (Mark LXXXV)</h4>
-            <button class="btn-perfil-action" disabled>Bloqueada</button>
-        </div>
+        <?php if ($mis_cartas && $mis_cartas->num_rows > 0): ?>
+            <?php while($card = $mis_cartas->fetch_assoc()): ?>
+                <div class="card-item-propio" style="border-left: 4px solid <?php echo ($card['rareza'] === 'Comun') ? '#475569' : (($card['rareza'] === 'Epica') ? '#7c3aed' : '#ca8a04'); ?>;">
+                    <div class="card-item-tipo" style="color: <?php echo ($card['rareza'] === 'Comun') ? '#94a3b8' : (($card['rareza'] === 'Epica') ? '#a855f7' : '#eab308'); ?>;">
+                        <?php echo htmlspecialchars($card['rareza']); ?>
+                    </div>
+                    
+                    <div style="width: 100%; height: 120px; margin: 10px 0; background-color: #000; border-radius: 4px; overflow:hidden;">
+                        <img src="<?php echo htmlspecialchars($card['ruta_imagen_carta']); ?>" alt="Carta" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+                    </div>
+
+                    <h4 class="card-item-title" style="margin: 5px 0;"><?php echo htmlspecialchars($card['nombre_personaje']); ?></h4>
+                    <div style="font-size: 11px; font-weight: bold; display: flex; justify-content: space-around; background-color: #0c0c10; padding: 6px; border-radius: 4px;">
+                        <span style="color: #ef4444;"> ATK: <?php echo intval($card['ataque']); ?></span>
+                        <span style="color: #3b82f6;"> DEF: <?php echo intval($card['defensa']); ?></span>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p style="color: #64748b; font-style: italic; text-align: center; width: 100%;">Aún no has descubierto cartas. Despliega portales en la sección de cofres para iniciar tu mazo.</p>
+        <?php endif; ?>
       </div>
-      <p style="color: #475569; font-size: 13px; text-align: center; margin-top: 24px; font-style: italic;">
-        El módulo de colecciones se activará en la próxima actualización.
-      </p>
     </div>
   </main>
 
@@ -243,3 +252,4 @@ $inventario = $conexion_perfil->query("
   </script>
 </body>
 </html>
+<?php $conexion_perfil->close(); ?>

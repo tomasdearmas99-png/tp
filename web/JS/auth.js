@@ -81,9 +81,25 @@
   function mostrarUsuario(u) {
     const nav = document.querySelector('.topbar__links');
     if (!nav) return;
+    
+    // 1. CORREGIDO: Buscamos si en tu menú dice "▢ REGALO DIARIO" y le cambiamos el cubito roto por un emoji limpio
+    nav.innerHTML = nav.innerHTML.replace('▢ REGALO DIARIO', '🎁 REGALO DIARIO');
+
     const span = document.createElement('span');
-    span.className = 'auth-usuario';
-    span.innerHTML = `${u.username} · 🪙 ${u.monedas} <a href="#" id="btn-logout">Salir</a>`;
+    // Forzamos estilos inline para asegurar que se mantenga visible y en la misma línea
+    span.style.display = 'inline-flex';
+    span.style.alignItems = 'center';
+    span.style.marginLeft = '20px';
+    span.style.whiteSpace = 'nowrap';
+    
+   // Reemplaza únicamente la línea span.innerHTML dentro de la función mostrarUsuario(u) de tu auth.js por esta:
+span.innerHTML = '<span style="color: #ffffff; font-weight: bold; text-transform: uppercase; margin-right: 8px;">' + u.username + '</span>' +
+                 '<span style="color: #444; margin: 0 8px;">|</span>' +
+                 '<img src="web/IM__COFRES/Moneda Stark.png" alt="Monedas" style="width: 22px; height: 22px; min-width: 22px; min-height: 22px; object-fit: contain; display: inline-block; vertical-align: middle; margin: -3px 8px 0 4px;" onerror="this.src=\'web/IM_BUSQUEDA/LOGITO.jpg\';">' +
+                 '<span style="color: #c4b494; font-weight: bold; margin-right: 15px; font-size: 15px; display: inline-block; vertical-align: middle;">' + u.monedas + '</span>' +
+                 '<a href="#" id="btn-logout" style="color: #e62429; font-weight: bold; text-decoration: none; display: inline-block; vertical-align: middle;">Salir</a>';
+
+    
     nav.appendChild(span);
     span.querySelector('#btn-logout').addEventListener('click', async e => {
       e.preventDefault();
@@ -91,6 +107,9 @@
       location.reload();
     });
   }
+
+
+
 
   // Mientras la página está abierta, avisa al servidor cada 30 s que seguís en la web.
   // Al cerrarla, el servidor cuenta los 5 minutos desde ese último aviso.

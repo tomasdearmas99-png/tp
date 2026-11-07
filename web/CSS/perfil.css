@@ -1,8 +1,8 @@
 /* ========================================================
-   HOJA DE ESTILOS PERFIL MARVEL (ESTILO RED SOCIAL PREMIUM)
+   HOJA DE ESTILOS PERFIL MARVEL (COLORES AJUSTADOS AL INDEX)
    ======================================================== */
 .perfil-body {
-    background-color: #0c0c0c !important; /* Fondo negro oficial de la web */
+    background-color: #0c0c0c !important; /* Mismo fondo negro mate del index */
     color: #ffffff;
     margin: 0;
     padding: 0;
@@ -11,8 +11,8 @@
 
 /* Barra superior de navegación interna */
 .topbar-perfil {
-    background-color: #111111;
-    border-bottom: 1px solid #2a2a2a;
+    background-color: #1a1a1a !important; /* Gris oscuro idéntico a tu barra del index */
+    border-bottom: 1px solid #333333 !important; /* Borde más claro y visible */
     position: fixed;
     top: 0;
     width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .topbar-perfil a {
-    color: #aaa;
+    color: #b3b3b3;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 13px;
@@ -42,15 +42,15 @@
 .perfil-cabecera {
     position: relative;
     margin-top: 45px;
-    background-color: #111111;
-    border-bottom: 1px solid #2a2a2a;
+    background-color: #1a1a1a !important; /* Unificado con el color de la barra */
+    border-bottom: 1px solid #333333 !important;
 }
 
 /* Banner Panorámico Superior */
 .perfil-banner {
     width: 100%;
     height: 260px;
-    background-image: url('../../IM_COSMETICOS/item_5.png'); /* Carga tu fondo de armaduras */
+    background-image: url('../../IM_COSMETICOS/item_5.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -61,7 +61,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent 30%, rgba(12, 12, 12, 0.95));
+    background: linear-gradient(to bottom, transparent 30%, #0c0c0c);
 }
 
 /* Contenedor del bloque central de información */
@@ -78,7 +78,7 @@
     position: relative;
     width: 130px;
     height: 130px;
-    margin: -65px auto 16px auto; /* Eleva el círculo a la mitad del banner */
+    margin: -65px auto 16px auto;
     z-index: 10;
 }
 
@@ -90,8 +90,8 @@
     position: absolute;
     top: 15px;
     left: 15px;
-    z-index: 1; /* Imagen abajo */
-    border: 3px solid #0c0c0c;
+    z-index: 1;
+    border: 3px solid #0c0c0c !important;
 }
 
 .avatar-marco-render {
@@ -100,7 +100,7 @@
     left: 0;
     width: 130px;
     height: 130px;
-    z-index: 2; /* Tu marco encimado arriba */
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -114,7 +114,7 @@
 
 .user-sub-status {
     font-size: 12px;
-    color: #c4b494; /* Dorado sutil */
+    color: #c4b494;
     font-weight: 700;
     margin: 0 0 12px 0;
     letter-spacing: 2px;
@@ -123,7 +123,7 @@
 
 .user-wallet {
     font-size: 13px;
-    color: #888;
+    color: #b3b3b3;
 }
 
 .user-wallet strong { 
@@ -144,13 +144,13 @@
     justify-content: center;
     gap: 40px;
     margin-bottom: 32px;
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid #333333 !important;
 }
 
 .pestana-link {
     background: none;
     border: none;
-    color: #aaa;
+    color: #b3b3b3;
     font-size: 14px;
     font-weight: 700;
     padding: 12px 4px;
@@ -176,7 +176,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #e62429; /* Línea inferior roja clásica de Marvel */
+    background-color: #e62429;
 }
 
 .seccion-tab { 
@@ -197,8 +197,8 @@
 }
 
 .card-item-propio {
-    background-color: #161616;
-    border: 1px solid #2a2a2a;
+    background-color: #1f1f1f !important; /* Mismo color de las tarjetas del cuerpo de tu index */
+    border: 1px solid #333333 !important; /* Bordes resaltados e idénticos */
     border-radius: 6px;
     padding: 20px;
     text-align: center;
@@ -206,13 +206,13 @@
 }
 
 .card-item-propio.equipado-si { 
-    border-color: #22c55e; /* Borde verde si está equipado */
+    border-color: #22c55e !important;
 }
 
 .card-item-tipo { 
     font-size: 9px; 
     font-weight: bold; 
-    color: #666; 
+    color: #888888;
     text-transform: uppercase; 
     letter-spacing: 1px; 
     margin-bottom: 6px; 
@@ -229,8 +229,8 @@
 .btn-perfil-action {
     width: 100%;
     padding: 10px 12px;
-    background-color: #222;
-    border: 1px solid #333;
+    background-color: #2a2a2a !important; /* Botón integrado gris visible */
+    border: 1px solid #444444 !important;
     color: #fff;
     font-size: 11px;
     font-weight: bold;
@@ -243,14 +243,14 @@
 }
 
 .btn-perfil-action:hover {
-    background-color: #e62429;
-    border-color: #e62429;
+    background-color: #e62429 !important;
+    border-color: #e62429 !important;
 }
 
 .btn-perfil-action.btn-equipado {
-    background-color: rgba(34, 197, 94, 0.1);
-    border-color: rgba(34, 197, 94, 0.3);
-    color: #22c55e;
+    background-color: rgba(34, 197, 94, 0.1) !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+    color: #22c55e !important;
     cursor: default;
 }
 
@@ -258,8 +258,8 @@
    CONTROLES DE SUBIDA DE IMAGEN
    ======================================================== */
 .panel-config-foto {
-    background-color: #161616;
-    border: 1px solid #2a2a2a;
+    background-color: #1f1f1f !important; /* Fondo gris unificado */
+    border: 1px solid #333333 !important;
     border-radius: 6px;
     padding: 24px;
     margin-top: 32px;
@@ -289,23 +289,23 @@
 
 .config-label { 
     font-size: 11px; 
-    color: #aaa; 
+    color: #b3b3b3; 
     text-transform: uppercase; 
 }
 
 .input-file-stark {
     background-color: #0c0c0c;
-    border: 1px solid #2a2a2a;
+    border: 1px solid #333333;
     padding: 8px;
     border-radius: 4px;
-    color: #888;
+    color: #b3b3b3;
     font-size: 12px;
 }
 
 .selector-rapido-avatar {
     padding: 9px;
     background-color: #0c0c0c;
-    border: 1px solid #2a2a2a;
+    border: 1px solid #333333;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;

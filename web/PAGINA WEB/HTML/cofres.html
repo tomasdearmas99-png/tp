@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Suministros - Cofres Stark</title>
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/cofres.css">
+</head>
+<body class="cofres-body">
+
+  <header class="topbar-cofres">
+    <div class="topbar-left">
+      <!-- Mantenemos su directiva exacta de enlace de retorno para más tarde -->
+      <a href="../../../index.html">← Regresar</a>
+    </div>
+    <div class="topbar-right">
+      <a href="perfil.php">Mi Perfil</a>
+    </div>
+  </header>
+
+  <main class="portal-contenedor">
+    <div class="hero-band">
+      <p class="hero-band__eyebrow">Protocolo de Despliegue Gacha</p>
+      <h1>BÓVEDA DE <span>SUMINISTROS</span></h1>
+    </div>
+
+    <!-- SECCIÓN A: SELECCIÓN DE COFRES (TIENDA) -->
+    <section class="tienda-cofres-grid" id="seccion-tienda-cofres">
+      
+      <!-- CARD 1: COFRE RECLUTA -->
+      <article class="cofre-comprar-card comun">
+        <div class="cofre-preview-box">
+          <img src="../../IM__COFRES/Cofre Recluta.png" alt="Cofre Recluta" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+        </div>
+        <h3 class="cofre-card-titulo">Cofre de Recluta</h3>
+        <p class="cofre-card-prob">Probabilidades: 🟢 80% | 🟣 18% | 🟡 2%</p>
+        <!-- Pasamos el tipo y su ruta de imagen exacta como parámetros -->
+        <button class="btn-adquirir-cofre" onclick="comprarCofreStark('comun', '../../IM__COFRES/Cofre Recluta.png')">Adquirir (100 Monedas)</button>
+      </article>
+
+      <!-- CARD 2: COFRE VENGADOR -->
+      <article class="cofre-comprar-card epico">
+        <div class="cofre-preview-box">
+          <img src="../../IM__COFRES/Cofre Stark.png" alt="Cofre Vengador" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+        </div>
+        <h3 class="cofre-card-titulo">Cofre de Vengador</h3>
+        <p class="cofre-card-prob">Probabilidades: 🟢 60% | 🟣 35% | 🟡 5%</p>
+        <button class="btn-adquirir-cofre" onclick="comprarCofreStark('epico', '../../IM__COFRES/Cofre Stark.png')">Adquirir (300 Monedas)</button>
+      </article>
+
+      <!-- CARD 3: COFRE NEXO CÓSMICO -->
+      <article class="cofre-comprar-card legendario">
+        <div class="cofre-preview-box">
+          <img src="../../IM__COFRES/Cofre Nexo Cosmico.png" alt="Cofre Nexo" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+        </div>
+        <h3 class="cofre-card-titulo">Cofre de Nexo Cósmico</h3>
+        <p class="cofre-card-prob">Probabilidades: 🟢 45% | 🟣 45% | 🟡 10%</p>
+        <button class="btn-adquirir-cofre" onclick="comprarCofreStark('legendario', '../../IM__COFRES/Cofre Nexo Cosmico.png')">Adquirir (700 Monedas)</button>
+      </article>
+
+    </section>
+
+    <!-- Reemplaza el bloque de la SECCIÓN B por este completo con el botón de cancelar integrado: -->
+
+<!-- SECCIÓN B: PANTALLA DE APERTURA CINEMÁTICA -->
+<section class="pantalla-apertura-cinematica" id="arena-apertura" style="display: none;">
+  <div class="contenedor-animacion-central">
+    
+    <!-- Imagen flotante del cofre comprado -->
+    <img id="cofre-animado-target" src="" alt="Cofre Activo" class="cofre-imagen-flotante" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+    
+    <div class="control-apertura-caja" style="display: flex; flex-direction: column; gap: 12px;">
+      <button id="btn-revelar-carta-click" class="btn-trigger-revelar" onclick="revelarPremioOculto()">¡ABRIR COFRE!</button>
+      
+      <!-- NUEVO: Botón transparente de cancelación antes de abrir -->
+      <button id="btn-cancelar-antes-abrir" class="btn-perfil-action" style="background-color: transparent; border: 1px solid #333; color: #666;" onclick="regresarABoveda()">← Cancelar y Volver</button>
+    </div>
+
+    <!-- Panel oculto final que contendrá la carta revelada -->
+    <div id="carta-revelada-resultado" class="revelado-final-box" style="display: none;"></div>
+
+    <button id="btn-volver-boveda" class="btn-volver-boveda-action" style="display: none;" onclick="regresarABoveda()">Volver a la Bóveda</button>
+  </div>
+</section>
+
+
+  </main>
+
+  <script>
+    let datosCartaRecibida = null;
+
+    // Ahora la función recibe la ruta específica de la imagen del cofre que tocaste
+    function comprarCofreStark(tipo, rutaImagenCofre) {
+        const tienda = document.getElementById('seccion-tienda-cofres');
+        const arena = document.getElementById('arena-apertura');
+        const cofreImg = document.getElementById('cofre-animado-target');
+        const btnAbrir = document.getElementById('btn-revelar-carta-click');
+        const resultado = document.getElementById('carta-revelada-resultado');
+        const btnVolver = document.getElementById('btn-volver-boveda');
+
+        // Asignamos de forma exacta la foto del cofre comprado a la animación flotante
+        cofreImg.src = rutaImagenCofre;
+        cofreImg.className = "cofre-imagen-flotante latido-espera";
+
+        // Reset de interfaz
+        resultado.style.display = "none";
+        btnVolver.style.display = "none";
+        btnAbrir.style.display = "inline-block";
+        btnAbrir.disabled = true;
+        btnAbrir.innerText = "Sincronizando Core...";
+
+        tienda.style.display = "none";
+        arena.style.display = "block";
+
+        let formData = new FormData();
+        formData.append('tipo_cofre', tipo);
+
+        fetch('../../PHP/abrir_cofre.php', { method: 'POST', body: formData })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    alert(data.mensaje);
+                    regresarABoveda();
+                    return;
+                }
+                datosCartaRecibida = data;
+                btnAbrir.disabled = false;
+                btnAbrir.innerText = "¡ABRIR COFRE!";
+            })
+            .catch(err => {
+                alert("Fallo crítico de red.");
+                regresarABoveda();
+            });
+    }
+
+// Busca esta función abajo en tu script y agrégale esta línea para ocultar el cancelar:
+function revelarPremioOculto() {
+    if (!datosCartaRecibida) return;
+
+    const cofreImg = document.getElementById('cofre-animado-target');
+    const btnAbrir = document.getElementById('btn-revelar-carta-click');
+    const resultado = document.getElementById('carta-revelada-resultado');
+    const btnVolver = document.getElementById('btn-volver-boveda');
+    
+    // NUEVA LÍNEA: Oculta el botón de cancelar al iniciar la explosión
+    document.getElementById('btn-cancelar-antes-abrir').style.display = "none";
+
+    btnAbrir.style.display = "none";
+    cofreImg.className = "cofre-imagen-flotante explosion-apertura";
+    
+    // ... resto de tu código de temporizador ...
+
+
+        setTimeout(() => {
+            cofreImg.style.display = "none";
+            
+            resultado.innerHTML = `
+                <div class="carta-marvel-container ${datosCartaRecibida.rareza.toLowerCase()}">
+                    <div class="card-glow-effect"></div>
+                    <div class="carta-rareza-banner">${datosCartaRecibida.rareza}</div>
+                    
+                    <div class="carta-wrapper-img">
+                        <img src="${datosCartaRecibida.ruta_imagen}" alt="${datosCartaRecibida.nombre}" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+                    </div>
+
+                    <h3 class="carta-titulo-display">${datosCartaRecibida.nombre}</h3>
+                    
+                    <div class="carta-stats-indicador">
+                        <span class="stat-atk">⚔️ ATK: ${datosCartaRecibida.ataque}</span>
+                        <span class="stat-def">🛡️ DEF: ${datosCartaRecibida.defensa}</span>
+                    </div>
+                </div>
+            `;
+            resultado.style.display = "block";
+            btnVolver.style.display = "inline-block";
+        }, 600);
+    }
+
+    function regresarABoveda() {
+        document.getElementById('arena-apertura').style.display = "none";
+        document.getElementById('cofre-animado-target').style.display = "block";
+        document.getElementById('seccion-tienda-cofres').style.display = "grid";
+        datosCartaRecibida = null;
+    }
+  </script>
+</body>
+</html>

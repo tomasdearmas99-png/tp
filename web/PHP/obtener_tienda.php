@@ -1,50 +1,55 @@
 <?php
-// Indicar al navegador que la respuesta es JSON limpio
-header('Content-Type: application/json; charset=utf-8');
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Configuración directa de la conexión a la base de datos
+header('Content-Type: application/json; charset=utf-8');
+error_reporting(0);
+ini_set('display_errors', 0);
+
 $host = "localhost";
 $user = "root";           
 $pass = "";               
 $db   = "marvel"; 
 
 $conexion = new mysqli($host, $user, $pass, $db);
+if ($conexion->connect_error) {
+    echo json_encode(["error" => "Fallo de conexión al Helicarrier."]);
+    exit;
+}
+$conexion->set_charset("utf8");
 
-$saldo = 0;
-$id_usuario = isset($_SESSION['id_usuario']) ? intval($_SESSION['id_usuario']) : 0;
+if (!isset($_SESSION['id_usuario'])) {
+    echo json_encode(["error" => "Señor, debe iniciar sesión para sincronizar la tienda."]);
+    exit;
+}
 
-// Consultar saldo usando tu columna real 'monedas_marvel'
-if ($id_usuario > 0 && !$conexion->connect_error) {
-    $conexion->set_charset("utf8");
-    $consulta_saldo = $conexion->query("SELECT monedas_marvel FROM usuarios WHERE id_usuario = $id_usuario");
-    if ($consulta_saldo && $consulta_saldo->num_rows > 0) {
-        $res_saldo = $consulta_saldo->fetch_assoc();
-        $saldo = intval($res_saldo['monedas_marvel']); // Cambiado a tu columna exacta de la BD
+$id_usuario = intval($_SESSION['id_usuario']);
+
+// 1. Obtener balance de monedas_marvel del usuario
+$consulta_user = $conexion->query("SELECT monedas_marvel FROM usuarios WHERE id_usuario = $id_usuario");
+$user_data = $consulta_user->fetch_assoc();
+$saldo = isset($user_data['monedas_marvel']) ? $user_data['monedas_marvel'] : 0;
+
+// 2. Traer el catálogo global de cosméticos disponibles (Marcos, Títulos y Fondos)
+$consulta_items = $conexion->query("SELECT id_item, nombre, categoria, precio_monedas FROM tienda_cosmeticos ORDER BY id_item ASC");
+
+$productos = [];
+if ($consulta_items) {
+    while ($row = $consulta_items->fetch_assoc()) {
+        $productos[] = [
+            "id_item" => intval($row['id_item']),
+            "nombre" => $row['nombre'],
+            "categoria" => $row['categoria'], // Guarda 'Marco', 'Titulo' o 'Fondo'
+            "precio_monedas" => intval($row['precio_monedas'])
+        ];
     }
 }
 
-// Inicializar el array de productos de forma correcta y limpia
-$productos = array();
-
-// Si la conexión a la base de datos funciona, traemos los artículos reales
-if (!$conexion->connect_error) {
-    $conexion->set_charset("utf8");
-    $resultado = $conexion->query("SELECT id_item, nombre, precio_monedas, categoria FROM tienda_cosmeticos");
-    if ($resultado) {
-        while ($fila = $resultado->fetch_assoc()) {
-            $productos[] = $fila; // Agrega correctamente cada fila al array
-        }
-    }
-}
-
-// Enviar la respuesta unificada final hacia JavaScript
 echo json_encode([
     "saldo_stark" => $saldo,
     "productos" => $productos
 ]);
 
-if (!$conexion->connect_error) {
-    $conexion->close();
-}
+$conexion->close();
 ?>
