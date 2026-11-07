@@ -1,0 +1,324 @@
+/* ========================================================
+   HOJA DE ESTILOS PERFIL MARVEL (ESTILO RED SOCIAL PREMIUM)
+   ======================================================== */
+.perfil-body {
+    background-color: #0c0c0c !important; /* Fondo negro oficial de la web */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Barra superior de navegación interna */
+.topbar-perfil {
+    background-color: #111111;
+    border-bottom: 1px solid #2a2a2a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    box-sizing: border-box;
+}
+
+.topbar-perfil a {
+    color: #aaa;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+}
+
+.topbar-perfil a:hover { 
+    color: #ffffff; 
+}
+
+/* Cabecera del perfil estilo red social */
+.perfil-cabecera {
+    position: relative;
+    margin-top: 45px;
+    background-color: #111111;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+/* Banner Panorámico Superior */
+.perfil-banner {
+    width: 100%;
+    height: 260px;
+    background-image: url('../../IM_COSMETICOS/item_5.png'); /* Carga tu fondo de armaduras */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.perfil-banner::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 30%, rgba(12, 12, 12, 0.95));
+}
+
+/* Contenedor del bloque central de información */
+.perfil-info-bloque {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    padding-bottom: 24px;
+}
+
+/* AVATAR CIRCULAR CRUZA LA LÍNEA DEL BANNER PERFECTAMENTE */
+.avatar-posicionador {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: -65px auto 16px auto; /* Eleva el círculo a la mitad del banner */
+    z-index: 10;
+}
+
+.avatar-imagen-core {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1; /* Imagen abajo */
+    border: 3px solid #0c0c0c;
+}
+
+.avatar-marco-render {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130px;
+    height: 130px;
+    z-index: 2; /* Tu marco encimado arriba */
+    pointer-events: none;
+}
+
+.user-tag-name {
+    font-size: 26px;
+    font-weight: 900;
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.user-sub-status {
+    font-size: 12px;
+    color: #c4b494; /* Dorado sutil */
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.user-wallet {
+    font-size: 13px;
+    color: #888;
+}
+
+.user-wallet strong { 
+    color: #c4b494; 
+}
+
+/* ========================================================
+   SISTEMA DE PESTAÑAS INTERACTIVAS (TABS)
+   ======================================================== */
+.perfil-contenido-cuerpo {
+    max-width: 700px;
+    margin: 32px auto 80px auto;
+    padding: 0 16px;
+}
+
+.pestanas-menu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.pestana-link {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.pestana-link:hover { 
+    color: #fff; 
+}
+
+.pestana-link.activa { 
+    color: #ffffff; 
+}
+
+.pestana-link.activa::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e62429; /* Línea inferior roja clásica de Marvel */
+}
+
+.seccion-tab { 
+    display: none; 
+}
+
+.seccion-tab.activa { 
+    display: block; 
+}
+
+/* ========================================================
+   GRILLA Y TARJETAS DEL INVENTARIO
+   ======================================================== */
+.grid-items-inventario {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.card-item-propio {
+    background-color: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+.card-item-propio.equipado-si { 
+    border-color: #22c55e; /* Borde verde si está equipado */
+}
+
+.card-item-tipo { 
+    font-size: 9px; 
+    font-weight: bold; 
+    color: #666; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    margin-bottom: 6px; 
+}
+
+.card-item-title { 
+    font-size: 14px; 
+    font-weight: 700; 
+    margin: 0 0 16px 0; 
+    color: #fff; 
+}
+
+/* Botones de acción del inventario */
+.btn-perfil-action {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #222;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-perfil-action:hover {
+    background-color: #e62429;
+    border-color: #e62429;
+}
+
+.btn-perfil-action.btn-equipado {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+    cursor: default;
+}
+
+/* ========================================================
+   CONTROLES DE SUBIDA DE IMAGEN
+   ======================================================== */
+.panel-config-foto {
+    background-color: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 24px;
+    margin-top: 32px;
+}
+
+.panel-config-foto h4 { 
+    margin: 0 0 20px 0; 
+    font-size: 14px; 
+    color: #fff; 
+    text-transform: uppercase; 
+    border-left: 3px solid #e62429; 
+    padding-left: 10px; 
+}
+
+.split-foto-controles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-foto-bloque {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.config-label { 
+    font-size: 11px; 
+    color: #aaa; 
+    text-transform: uppercase; 
+}
+
+.input-file-stark {
+    background-color: #0c0c0c;
+    border: 1px solid #2a2a2a;
+    padding: 8px;
+    border-radius: 4px;
+    color: #888;
+    font-size: 12px;
+}
+
+.selector-rapido-avatar {
+    padding: 9px;
+    background-color: #0c0c0c;
+    border: 1px solid #2a2a2a;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Alertas de notificación internas */
+.notif-barra {
+    background-color: rgba(196, 180, 148, 0.05);
+    border: 1px solid rgba(196, 180, 148, 0.2);
+    color: #c4b494;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 24px;
+    text-align: center;
+}

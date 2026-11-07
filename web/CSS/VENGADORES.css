@@ -1,0 +1,527 @@
+/* VARIABLES GLOBALES */
+:root {
+  --bg: #0a0908;          /* Fondo de la web */
+  --surface: #141210;     /* Fondo de tarjetas y paneles */
+  --surface-2: #1c1815;   /* Fondo para efectos hover */
+  --border: #2b2521;      /* Color de bordes */
+
+  --ink: #f2ece1;         /* Texto principal */
+  --muted: #9c9184;       /* Texto secundario */
+
+  --red: #ed1d24;         /* Rojo Marvel */
+  --red-deep: #8f0d12;    /* Rojo oscuro */
+  --foil: #c9a227;        /* Dorado */
+
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-nav: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+
+  --header-h: 76px;       /* Altura del menú superior */
+}
+
+/* REINICIO DE ESTILOS */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 4px 4px, rgba(237,29,36,0.05) 1.4px, transparent 1.4px) 0 0 / 22px 22px,
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* BARRA SUPERIOR (TOPBAR) */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: rgba(10, 9, 8, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  z-index: 200;
+}
+
+.topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Botón del menú (Hamburguesa) */
+.menu-toggle {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--red);
+  box-shadow: 0 0 0 3px rgba(237,29,36,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.menu-toggle:hover { transform: scale(1.06); box-shadow: 0 0 0 5px rgba(237,29,36,0.22); }
+
+.menu-toggle img { width: 100%; height: 100%; object-fit: cover; }
+
+.menu-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.55), transparent 55%);
+}
+
+/* Las 3 líneas del botón de menú */
+.menu-toggle__bars {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 12px;
+  z-index: 2;
+}
+.menu-toggle__bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+.menu-toggle__bars span:nth-child(1) { top: 0; }
+.menu-toggle__bars span:nth-child(2) { top: 5px; }
+.menu-toggle__bars span:nth-child(3) { top: 10px; }
+
+/* Logo principal */
+.wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 4px;
+  font-size: 26px;
+  color: var(--red);
+  text-shadow: 0 0 18px rgba(237,29,36,0.35);
+}
+
+/* Enlaces de la barra superior */
+.topbar__links {
+  display: flex;
+  gap: 34px;
+  font-family: var(--font-nav);
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.topbar__links a {
+  position: relative;
+  color: var(--muted);
+  padding-bottom: 6px;
+  transition: color 0.2s ease;
+}
+/* Línea roja animada debajo de los enlaces */
+.topbar__links a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 2px;
+  background: var(--red);
+  transition: right 0.25s ease;
+}
+.topbar__links a:hover { color: var(--ink); }
+.topbar__links a:hover::after { right: 0; }
+
+/* MENÚ LATERAL (SIDEBAR) */
+/* Fondo oscuro translúcido de fondo */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 250;
+}
+.sidebar-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+/* Contenedor del panel lateral */
+.sidebar {
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  width: min(340px, 86vw);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
+  z-index: 260;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar.is-open { transform: translateX(0); }
+
+/* Cabecera del menú lateral (Título y botón cerrar) */
+.sidebar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 22px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar__head span {
+  font-family: var(--font-display);
+  letter-spacing: 3px;
+  color: var(--red);
+  font-size: 20px;
+}
+.sidebar__close {
+  appearance: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+.sidebar__close:hover { border-color: var(--red); color: var(--red); }
+
+/* Lista de elementos del menú lateral */
+.sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 24px;
+}
+
+
+/* ELEMENTOS DEL MENÚ LATERAL (SIDEBAR) */
+.sidebar__list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 22px;
+  border-left: 3px solid transparent; /* Borde izquierdo oculto */
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+/* Efecto al pasar el cursor por las opciones del menú */
+.sidebar__list a:hover {
+  background: var(--surface-2);
+  border-left-color: var(--red); /* Muestra borde izquierdo rojo */
+}
+.sidebar__list img {
+  width: 46px;
+  height: 46px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+.sidebar__list .nombre {
+  font-family: var(--font-nav);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+.sidebar__list .rol {
+  display: block;
+  font-family: var(--font-body);
+  color: var(--muted);
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+}
+
+/* SECCIÓN PRINCIPAL (MAIN Y HERO BANNER) */
+main { padding-top: var(--header-h); } /* Espacio para que no lo tape la barra fija */
+
+.hero-band {
+  position: relative;
+  padding: 90px 24px 70px;
+  text-align: center;
+  overflow: hidden;
+}
+/* Fondo con patrón de puntos decorativo en el Hero */
+.hero-band__before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-radial-gradient(circle at 0 0, rgba(237,29,36,0.14) 0 1.5px, transparent 1.5px 14px);
+  mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+  opacity: 0.5;
+}
+.hero-band__eyebrow {
+  position: relative;
+  font-family: var(--font-nav);
+  letter-spacing: 6px;
+  color: var(--foil);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.hero-band h1 {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 9vw, 96px);
+  letter-spacing: 6px;
+  margin: 6px 0 0;
+  color: var(--ink);
+}
+.hero-band h1 span { color: var(--red); }
+
+/* CONTENIDO DE TEXTO GENERAL */
+section.contenido {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 10px 24px 70px;
+}
+section.contenido h2 {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  font-size: 30px;
+  color: var(--ink);
+  border-left: 4px solid var(--red); /* Detalle de línea roja a la izquierda */
+  padding-left: 16px;
+  margin: 56px 0 14px;
+}
+section.contenido h2:first-child { margin-top: 0; }
+
+section.contenido p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* TÍTULOS DE SECCIÓN */
+.section-title {
+  text-align: center;
+  padding: 30px 24px 10px;
+}
+.section-title__eyebrow {
+  font-family: var(--font-nav);
+  letter-spacing: 6px;
+  color: var(--foil);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.section-title h2 {
+  font-family: var(--font-display);
+  letter-spacing: 3px;
+  font-size: clamp(34px, 6vw, 52px);
+  margin: 6px 0 0;
+}
+
+/* SECCIÓN: GALERÍA DE HÉROES (Estructura balanceada de 4 columnas) */
+.galeria-contenedor { 
+  display: grid; 
+  /* Reducimos de 8 a 4 columnas para que cada tarjeta tenga el doble de espacio horizontal y sea ancha */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; /* Separación estándar muy limpia */ 
+  max-width: 1400px; /* Se expande por casi toda la pantalla eliminando los bordes vacíos */
+  margin: 40px auto 80px; 
+  padding: 0 24px; 
+}
+
+.tarjeta-heroe { 
+  background: var(--surface); 
+  border: 1px solid var(--border); 
+  transition: transform 0.3s ease, border-color 0.3s ease; 
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+}
+
+/* REGLA ESPECIAL: El Capitán América se vuelve el doble de ancho (ocupa 2 columnas) y el doble de alto */
+.tarjeta-heroe:nth-child(1) {
+  grid-column: span 2;      
+  grid-row: span 2; 
+}
+
+.tarjeta-heroe:hover { 
+  transform: translateY(-6px); 
+  border-color: var(--red); 
+}
+
+.imagen-contenedor { 
+  width: 100%; 
+  height: 440px; /* Tus 440px originales para que mantengan la proporción perfecta al ser anchas */
+  overflow: hidden; 
+  border-bottom: 1px solid var(--border); 
+  background-color: #000; 
+  position: relative; /* OBLIGATORIO: Permite que la imagen hover se posicione encima de la normal */
+}
+
+/* Hace que la imagen del Capitán América llene su nuevo espacio destacado de forma perfecta */
+.tarjeta-heroe:nth-child(1) .imagen-contenedor {
+  height: 100%;
+  flex-grow: 1;
+}
+
+/* ========================================================
+   ESTILOS DE IMÁGENES Y EFECTO HOVER (INTERCAMBIO)
+   ======================================================== */
+
+/* Estilos base para todas las imágenes (normales y de hover) */
+.imagen-contenedor img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  filter: brightness(0.85); 
+  transition: opacity 0.4s ease, filter 0.3s ease; /* Transición suave de opacidad */
+}
+
+/* La imagen de hover se posiciona de forma absoluta oculta por defecto */
+.imagen-contenedor .img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0; /* Totalmente transparente al inicio */
+}
+
+/* Al pasar el cursor por la tarjeta: se oculta la imagen normal y se muestra la de hover */
+.tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) { 
+  opacity: 0; 
+}
+
+.tarjeta-heroe:hover .imagen-contenedor .img-hover { 
+  opacity: 1; 
+  filter: brightness(1.05); 
+}
+
+
+/* ========================================================
+   TEXTOS E INFORMACIÓN
+   ======================================================== */
+
+.info-contenedor { 
+  padding: 16px 12px; 
+  text-align: center; 
+}
+
+.info-contenedor .nombre { 
+  color: var(--ink); 
+  font-family: var(--font-nav); 
+  font-size: 16px; 
+  font-weight: 600; 
+  letter-spacing: 1.5px; 
+  margin-bottom: 4px; 
+  text-transform: uppercase; 
+}
+
+.info-contenedor .origen { 
+  color: var(--foil); 
+  font-family: var(--font-body); 
+  font-size: 11px; 
+  font-weight: 700; 
+  letter-spacing: 1px; 
+  text-transform: uppercase; 
+}
+
+
+/* ========================================================
+   ENCUADRE AJUSTADO INDIVIDUAL (AFECTA A AMBAS IMÁGENES)
+   ======================================================== */
+
+/* 1. CAPITÁN AMÉRICA */
+.tarjeta-heroe:nth-child(1) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 2. THOR */
+.tarjeta-heroe:nth-child(2) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 3. HULK */
+.tarjeta-heroe:nth-child(3) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 4. IRON MAN */
+.tarjeta-heroe:nth-child(4) .imagen-contenedor img {
+  object-position: center 5%;
+}
+
+/* 5. BLACK WIDOW */
+.tarjeta-heroe:nth-child(5) .imagen-contenedor img {
+  object-position: center 12%;
+}
+
+/* 6. HAWKEYE */
+.tarjeta-heroe:nth-child(6) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 7. SCARLET WITCH */
+.tarjeta-heroe:nth-child(7) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 8. VISIÓN */
+.tarjeta-heroe:nth-child(8) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 9. FALCON */
+.tarjeta-heroe:nth-child(9) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 10. WAR MACHINE */
+.tarjeta-heroe:nth-child(10) .imagen-contenedor img {
+  object-position: center 5%;
+}
+
+/* 11. CAPITANA MARVEL */
+.tarjeta-heroe:nth-child(11) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 12. SPIDER-MAN */
+.tarjeta-heroe:nth-child(12) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 13. BLACK PANTHER */
+.tarjeta-heroe:nth-child(13) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 14. DOCTOR STRANGE */
+.tarjeta-heroe:nth-child(14) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 15. ANT-MAN */
+.tarjeta-heroe:nth-child(15) .imagen-contenedor img {
+  object-position: center top;
+}
+
+
+/* PIE DE PÁGINA (FOOTER) */
+.pie-pagina {
+  width: 100%;
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+}
+.pie-pagina p {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}

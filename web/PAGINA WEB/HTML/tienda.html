@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrias Stark - Tienda de Cosméticos</title>
+  <!-- Rutas relativas subiendo dos niveles para llegar a la carpeta CSS -->
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/tienda.css">
+</head>
+<body class="tienda-body">
+
+  <header class="topbar">
+    <div class="topbar__left">
+      <span class="wordmark">STARK TECH</span>
+    </div>
+    <div class="topbar__balances">
+      <div class="balance-item">
+        <span class="balance-label">Créditos Stark:</span>
+        <!-- Se rellenará automáticamente al cargar la sesión -->
+        <span id="saldo-stark" class="balance-valor">---</span>
+      </div>
+    </div>
+    <nav class="topbar__links">
+      <!-- Corregido: Sube dos niveles exactos para volver de forma perfecta al index.php de tu web -->
+      <a href="../../../index.html">Inicio</a>
+      <a href="../../PAGINA WEB/HTML/perfil.php">Mi Perfil</a>
+    </nav>
+  </header>
+
+  <main class="tienda-main">
+    <div class="hero-band">
+      <p class="hero-band__eyebrow">División de Personalización</p>
+      <h1>TIENDA DE <span>COSMÉTICOS</span></h1>
+    </div>
+
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <section class="tienda-grid" id="productos-contenedor">
+      <!-- Los productos se inyectarán aquí dinámicamente desde la base de datos -->
+      <p class="cargando-texto">Iniciando interfaz de Stark Industries...</p>
+    </section>
+  </main>
+
+  <script>
+    // Lógica interactiva para comunicarse con la base de datos mediante PHP
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarTienda();
+    });
+
+    function cargarTienda() {
+        // Hacemos una petición al backend para obtener los cosméticos y el saldo
+        fetch('../../PHP/obtener_tienda.php')
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    document.getElementById('productos-contenedor').innerHTML = `<p class='error-texto'>${data.error}</p>`;
+                    return;
+                }
+                
+                // Actualizar saldo superior
+                document.getElementById('saldo-stark').innerText = data.saldo_stark;
+
+                // Renderizar las tarjetas de cosméticos
+                let html = '';
+                data.productos.forEach(prod => {
+                    let rutaImagen = "";
+
+                    // CASO ESPECIAL: Si es el ID 1, lee directamente tu nombre de archivo personalizado
+                    if (parseInt(prod.id_item) === 1) {
+                        rutaImagen = "../../IM_COSMETICOS/Marco_Ojo_Halcon_Cosmetico.png";
+                    } else {
+                        // Para todos los demás productos, busca automáticamente por su número de ID de artículo
+                        rutaImagen = "../../IM_COSMETICOS/item_" + prod.id_item + ".png";
+                    }
+
+                    html += `
+                        <article class="cosmetico-card">
+                            <div class="cosmetico-badge ${prod.categoria.toLowerCase()}">${prod.categoria}</div>
+                            
+                            <!-- Bloque dinámico: Renderiza cada cosmético según su ID o categoría real -->
+                            <div class="cosmetico-preview-box" style="width: 100%; height: 120px; display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+                                <img src="${rutaImagen}" alt="${prod.nombre}" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+                            </div>
+
+                            <h3 class="cosmetico-nombre">${prod.nombre}</h3>
+                            <div class="cosmetico-precio">${prod.precio_monedas} Créditos</div>
+                            <button class="btn-comprar" onclick="comprarItem(${prod.id_item})">Adquirir</button>
+                        </article>
+                    `;
+                });
+                document.getElementById('productos-contenedor').innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById('productos-contenedor').innerHTML = "<p class='error-texto'>Error crítico al conectar con los sistemas de Stark Tech.</p>";
+                console.error("Fallo de comunicación:", err);
+            });
+    }
+
+    function comprarItem(idItem) {
+        let formData = new FormData();
+        // Coincide exactamente con el $_POST['id_item'] que procesa el backend PHP
+        formData.append('id_item', idItem);
+
+        fetch('../../PHP/comprar_cosmetico.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(mensaje => {
+            alert(mensaje);
+            cargarTienda(); // Refrescar balances y productos adquiridos de forma automática
+        });
+    }
+  </script>
+</body>
+</html>
