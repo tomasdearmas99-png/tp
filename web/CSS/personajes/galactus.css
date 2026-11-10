@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #07040d; /* Púrpura galáctico estelar ultra oscuro */
+    --surface-box: rgba(18, 12, 34, 0.7);
+    --border-color: #3b1c54; /* Armadura cósmica */
+    --text-primary: #f4effa;
+    --text-muted: #a68dbd;
+    --stark-gold: #c084fc; /* Brillo de energía cósmica púrpura neón */
+    --marvel-red: #7e22ce;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(192, 132, 252, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

@@ -39,39 +39,74 @@
 }
 
 /* Cabecera del perfil estilo red social */
+/* ========================================================
+   CONFIGURACIÓN DE BANNER MULTIMEDIA DINÁMICO
+   ======================================================== */
+/* ========================================================
+   CABECERA EXPANDIDA: FRANJA ESTIRADA PARA EVITAR RECORTES
+   ======================================================== */
 .perfil-cabecera {
     position: relative;
-    margin-top: 45px;
-    background-color: #1a1a1a !important; /* Unificado con el color de la barra */
-    border-bottom: 1px solid #333333 !important;
-}
-
-/* Banner Panorámico Superior */
-.perfil-banner {
+    margin-top: 54px; /* Alineación perfecta debajo de tu barra de navegación */
+    background-color: #0c0c0c !important;
+    border-bottom: 1px solid #2a2a2a !important; /* Línea gris divisoria inferior */
     width: 100%;
-    height: 260px;
-    background-image: url('../../IM_COSMETICOS/item_5.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
+    height: 520px; /* CAMBIO CLAVE: Estiramos la franja para que baje mucho más y no corte las armaduras */
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
+
+.perfil-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* El fondo ahora rellena todo el bloque estirado */
+    background-color: #111111;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    z-index: 1;
+}
+
+/* Degradé calibrado: Protege la visibilidad de las ramas de arriba y difumina hacia abajo */
 .perfil-banner::after {
     content: '';
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent 30%, #0c0c0c);
+    background: linear-gradient(to bottom, 
+        rgba(12, 12, 12, 0.2) 0%, 
+        rgba(12, 12, 12, 0.85) 100%
+    ) !important;
+    z-index: 2;
+    pointer-events: none;
 }
 
-/* Contenedor del bloque central de información */
+/* Centrado vertical de tu Avatar, Nombre, Título y Dinero */
+/* ========================================================
+   ALINEACIÓN AJUSTADA: TEXTOS ABAJO Y AVATAR CENTRADO
+   ======================================================== */
 .perfil-info-bloque {
     max-width: 700px;
     margin: 0 auto;
     text-align: center;
     position: relative;
-    padding-bottom: 24px;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Empuja el nombre y el dinero hacia abajo, pegados a la linea */
+    align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 24px; /* Separacion milimetrica sobre la linea gris */
 }
+
+
+
 
 /* AVATAR CIRCULAR CRUZA LA LÍNEA DEL BANNER PERFECTAMENTE */
 .avatar-posicionador {
@@ -321,4 +356,205 @@
     font-size: 13px;
     margin-bottom: 24px;
     text-align: center;
+}
+/* ========================================================
+   REPARACIÓN DE MAZO DE CARTAS - AJUSTE DE RECORTE Y TAMAÑO
+   ======================================================== */
+#tab-tarjetas .grid-items-inventario {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+    gap: 24px !important;
+    padding: 15px 0 !important;
+}
+
+#tab-tarjetas .card-item-propio {
+    background-color: #141419 !important;
+    border: 2px solid #282833 !important;
+    border-radius: 10px !important;
+    padding: 16px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 350px !important; /* Forzamos un alto fijo para que todas las tarjetas midan exactamente igual */
+    box-sizing: border-box !important;
+}
+
+/* CAJA DE LA IMAGEN: Evita que se estiren, aplasten o corten */
+#tab-tarjetas .card-item-propio div[style*="height: 120px"],
+#tab-tarjetas .card-item-propio div[style*="height:120px"] {
+    width: 100% !important;
+    height: 190px !important; /* Le damos más altura vertical para que se aprecie la ilustración */
+    background-color: #09090d !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    overflow: hidden !important;
+    margin: 8px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#tab-tarjetas .card-item-propio img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* CAMBIO CLAVE: Muestra la portada ENTERA sin recortar los bordes */
+    background-color: #09090d !important;
+}
+
+/* Tipografía del Nombre del Personaje */
+#tab-tarjetas .card-item-title {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 4px 0 10px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Si el nombre es muy largo, no rompe el renglón */
+}
+
+/* Indicador inferior de Ataque y Defensa */
+#tab-tarjetas div[style*="font-size: 11px"],
+#tab-tarjetas div[style*="font-size:11px"] {
+    background-color: #0b0b0f !important;
+    padding: 6px !important;
+    border-radius: 5px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+    border: 1px solid rgba(255,255,255,0.01) !important;
+}
+
+/* ========================================================
+   ESTILOS PREMIUM PARA LA VENTANA MODAL DE DETALLE DE CARTA
+   ======================================================== */
+.modal-carta {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-carta-box {
+    background-color: #16161a;
+    border: 2px solid #282833;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 480px;
+    padding: 24px;
+    box-sizing: border-box;
+    position: relative;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modal-carta-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-carta-close:hover {
+    color: #ffffff;
+}
+
+.modal-carta-flex {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.modal-carta-img-box {
+    width: 60%;
+    height: 280px;
+    background-color: #000000;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333333;
+}
+
+.modal-carta-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #000000;
+}
+
+.modal-carta-side {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-stat-box {
+    background-color: #0c0c10;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #222222;
+}
+
+.modal-stat-label {
+    font-size: 10px;
+    color: #888888;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.modal-stat-value {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.modal-stat-value.atk { 
+    color: #ef4444; 
+}
+
+.modal-stat-value.def { 
+    color: #3b82f6; 
+}
+
+.modal-stat-value.drop { 
+    color: #eab308; 
+}
+
+.modal-carta-desc {
+    margin-top: 20px;
+    background-color: #0c0c10;
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid #222222;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #cccccc;
+    text-align: justify;
+}
+
+.modal-carta-title-main {
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    border-bottom: 1px solid #282833;
+    padding-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.card-item-propio.clickable {
+    cursor: pointer;
 }

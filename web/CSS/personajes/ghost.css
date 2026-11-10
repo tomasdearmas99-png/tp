@@ -1,0 +1,15 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #07090d; /* Gris fantasmal/cuántico oscuro */
+    --surface-box: rgba(18, 22, 30, 0.7);
+    --border-color: #242f3d;
+    --text-primary: #f0f4f8;
+    --text-muted: #8ca0b3;
+    --stark-gold: #a5f3fc; /* Brillo cian pálido/translúcido de su desfase cuántico */
+    --marvel-red: #475569;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(165, 243, 252, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

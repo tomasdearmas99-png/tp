@@ -1,0 +1,19 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #060309; /* Púrpura místico místico profundo */
+    --surface-box: rgba(16, 10, 26, 0.75);
+    --border-color: #3b1454; /* Tinte místico oscuro */
+    --text-primary: #f6effc;
+    --text-muted: #ab97bd;
+    --stark-gold: #f59e0b; /* Resplandor naranja de los portales Eldritch y chispas mágicas */
+    --marvel-red: #be123c; /* Capa de levitación carmesí */
+}
+
+.personaje-title-main { 
+    text-shadow: 0 0 25px rgba(245, 158, 11, 0.45) !important; 
+}
+
+.circulo-avatar-item:hover { 
+    border-color: var(--stark-gold) !important; 
+}

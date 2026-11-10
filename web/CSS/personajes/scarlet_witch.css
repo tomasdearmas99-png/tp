@@ -1,0 +1,29 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #0a0304; /* Fondo escarlata ultra oscuro */
+    --surface-box: rgba(26, 8, 11, 0.7); /* Contenedores con tinte místico del caos */
+    --border-color: #4a1217; /* Bordes color sangre mágica */
+    --text-primary: #fdf5f5;
+    --text-muted: #c78f93;
+    --stark-gold: #f43f5e; /* Reemplazamos por el rosa/rojo brillante del caos */
+    --marvel-red: #dc2626; 
+}
+
+.personaje-title-main {
+    text-shadow: 0 0 25px rgba(244, 63, 94, 0.5) !important;
+}
+.circulo-avatar-item {
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15) !important;
+}
+.circulo-avatar-item:hover {
+    border-color: #f43f5e !important;
+}
+.btn-leer-mas, .btn-leer-mas:hover {
+    border-color: #f43f5e !important;
+    color: #f43f5e !important;
+}
+.btn-leer-mas:hover {
+    background-color: #f43f5e !important;
+    color: #0a0304 !important;
+}

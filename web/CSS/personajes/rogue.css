@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #040805; /* Verde traje clásico oscuro */
+    --surface-box: rgba(12, 24, 15, 0.7);
+    --border-color: #1a3d22;
+    --text-primary: #eafcf0;
+    --text-muted: #8ca391;
+    --stark-gold: #c9a227; /* Detalles dorados de sus chaquetas y mallas */
+    --marvel-red: #16a34a;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(201, 162, 39, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

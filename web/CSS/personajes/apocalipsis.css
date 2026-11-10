@@ -1,0 +1,14 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #05060c; /* Azul metal egipcio antiguo muy oscuro */
+    --surface-box: rgba(14, 16, 32, 0.7);
+    --border-color: #1b264d; /* Azul armadura celestial */
+    --text-primary: #eef2fa;
+    --text-muted: #8d9bbd;
+    --stark-gold: #06b6d4; /* Brillo cian metálico de sus circuitos balísticos */
+    --marvel-red: #1e1b4b;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(6, 182, 212, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

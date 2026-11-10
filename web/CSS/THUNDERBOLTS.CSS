@@ -464,3 +464,142 @@ section.contenido p {
 .imagen-contenedor {
   background: linear-gradient(160deg, var(--surface-2), var(--red-deep));
 }
+
+
+/* ========================================================
+   GRILLA THUNDERBOLTS - CENTRADA Y ANCHA
+   ======================================================== */
+
+.galeria-contenedor {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+
+    /* ANCHO DE LA GALERÍA */
+    width: min(1050px, calc(100vw - 60px)) !important;
+    max-width: none !important;
+
+    /* CENTRADO REAL EN LA PANTALLA */
+position: relative !important;
+left: calc(55% + 100px) !important;
+translate: -50% 0 !important;
+
+    margin: 40px 0 80px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+
+    float: none !important;
+    clear: both !important;
+}
+
+/* ========================================================
+   TARJETAS DE PERSONAJES
+   ======================================================== */
+
+.tarjeta-heroe {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    transition: transform 0.3s ease, border-color 0.3s ease !important;
+    cursor: pointer !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.tarjeta-heroe:hover {
+    transform: translateY(-6px);
+    border-color: var(--red) !important;
+}
+
+/* ========================================================
+   IMÁGENES
+   ======================================================== */
+
+.imagen-contenedor {
+    width: 100% !important;
+    height: 380px !important;
+    overflow: hidden !important;
+    border-bottom: 1px solid var(--border) !important;
+    position: relative !important;
+    background-color: #000000 !important;
+}
+
+.imagen-contenedor img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+}
+
+/* INTERCAMBIO DE IMAGEN AL PASAR EL MOUSE */
+
+.imagen-contenedor .img-hover {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    opacity: 0 !important;
+}
+
+.tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) {
+    opacity: 0 !important;
+}
+
+.tarjeta-heroe:hover .imagen-contenedor .img-hover {
+    opacity: 1 !important;
+    filter: brightness(1.05) !important;
+}
+
+/* ========================================================
+   INFORMACIÓN DE LOS PERSONAJES
+   ======================================================== */
+
+.info-contenedor {
+    padding: 18px 12px !important;
+    text-align: center !important;
+}
+
+.info-contenedor .nombre {
+    color: var(--ink) !important;
+    font-family: var(--font-nav) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 4px !important;
+    text-transform: uppercase !important;
+}
+
+.info-contenedor .origen {
+    color: var(--foil) !important;
+    font-family: var(--font-body) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+}
+
+/* ========================================================
+   ADAPTACIÓN A PANTALLAS PEQUEÑAS
+   ======================================================== */
+
+@media (max-width: 700px) {
+    .galeria-contenedor {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        width: calc(100vw - 30px) !important;
+        gap: 15px !important;
+    }
+
+    .imagen-contenedor {
+        height: 280px !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .galeria-contenedor {
+        grid-template-columns: 1fr !important;
+        width: calc(100vw - 40px) !important;
+    }
+}

@@ -1,0 +1,39 @@
+/* IMPORTAMOS EL LAYOUT BASE UNIVERSAL */
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #040a06; /* Fondo verde profundo mutado */
+    --surface-box: rgba(12, 24, 16, 0.7); /* Contenedores con tinte esmeralda oscuro */
+    --border-color: #183320; /* Bordes radioactivos apagados */
+    --text-primary: #e2f0e7;
+    --text-muted: #7da88a;
+    --stark-gold: #a3e635; /* Cambiamos por el verde lima radioactivo desatado */
+    --marvel-red: #22c55e;
+}
+
+/* RESPLANDOR GAMMA DE LA BESTIA */
+.personaje-title-main {
+    text-shadow: 0 0 25px rgba(163, 230, 53, 0.4) !important;
+}
+
+.circulo-avatar-item {
+    box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.15) !important;
+}
+
+.circulo-avatar-item:hover {
+    border-color: #a3e635 !important;
+}
+
+.btn-leer-mas, .btn-leer-mas:hover {
+    border-color: #a3e635 !important;
+    color: #a3e635 !important;
+}
+.btn-leer-mas:hover {
+    background-color: #a3e635 !important;
+    color: #040a06 !important;
+}
+
+.logo-universo-box {
+    background-color: #15803d !important; /* Variante verde militar/gamma */
+    box-shadow: 0 0 15px rgba(21, 128, 61, 0.35) !important;
+}

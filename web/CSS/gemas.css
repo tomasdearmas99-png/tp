@@ -474,3 +474,76 @@ section.contenido p {
 
     transform-origin: center center; 
 }
+
+/* ========================================================
+   GRILLA OMEGA: CONFIGURACIÓN INTEGRADA DE LAS GEMAS DEL INFINITO
+   ======================================================== */
+.gemas-grid-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1.2fr 1fr !important; /* El centro es ligeramente más ancho para el Guantelete */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* ========================================================
+   COORDINADAS DE SELECCIÓN VERTICAL COMPACTA
+   ======================================================== */
+
+/* 1. EL GUANTELETE DEL INFINITO: Se erige en el centro ocupando las 3 filas completas */
+.galeria-contenedor .tarjeta-heroe:nth-child(7) {
+  grid-column: 2 !important;
+  grid-row: 1 / span 3 !important;
+}
+
+.galeria-contenedor .tarjeta-heroe:nth-child(7) .imagen-contenedor {
+  height: 100% !important;
+  flex-grow: 1 !important;
+}
+
+.galeria-contenedor .tarjeta-heroe:nth-child(7) .imagen-contenedor img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background-color: #000000 !important;
+}
+
+/* --- UBICACIÓN INMEDIATA DE LAS CELDAS LATERALES --- */
+.galeria-contenedor .tarjeta-heroe:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; } /* Tiempo */
+.galeria-contenedor .tarjeta-heroe:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; } /* Alma */
+.galeria-contenedor .tarjeta-heroe:nth-child(3) { grid-column: 1 !important; grid-row: 3 !important; } /* Realidad */
+
+.galeria-contenedor .tarjeta-heroe:nth-child(4) { grid-column: 3 !important; grid-row: 1 !important; } /* Espacio */
+.galeria-contenedor .tarjeta-heroe:nth-child(5) { grid-column: 3 !important; grid-row: 2 !important; } /* Mente */
+.galeria-contenedor .tarjeta-heroe:nth-child(6) { grid-column: 3 !important; grid-row: 3 !important; } /* Poder */
+
+/* ========================================================
+   REGLAS EXCLUSIVAS PARA IGUALAR LOS VÓRTICES (CALIBRACIÓN FINAL)
+   ======================================================== */
+
+/* Configuración de escala general para las gemas estándar laterales */
+.galeria-contenedor .tarjeta-heroe:not(:nth-child(7)) .imagen-contenedor img {
+  object-fit: cover;
+}
+
+/* GEMA DE LA REALIDAD (Abajo a la izquierda): Subimos sutilmente la imagen para centrar el óvalo rojo */
+.galeria-contenedor .tarjeta-heroe:nth-child(3) .imagen-contenedor img {
+  object-fit: cover !important;
+  object-position: center 60% !important;
+}
+
+/* GEMA DE LA MENTE (Medio a la derecha): Quitamos el zoom usando contain para alejar la cámara de forma simétrica */
+.galeria-contenedor .tarjeta-heroe:nth-child(5) .imagen-contenedor img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background-color: #000000 !important;
+}
+
+/* Gemas estándar (Tiempo, Espacio, Alma, Poder): Conservan su centrado perfecto original */
+.galeria-contenedor .tarjeta-heroe:nth-child(1) .imagen-contenedor img,
+.galeria-contenedor .tarjeta-heroe:nth-child(2) .imagen-contenedor img,
+.galeria-contenedor .tarjeta-heroe:nth-child(4) .imagen-contenedor img,
+.galeria-contenedor .tarjeta-heroe:nth-child(6) .imagen-contenedor img {
+  object-position: center center !important;
+}

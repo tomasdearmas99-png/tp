@@ -474,3 +474,122 @@ section.contenido p {
 
     transform-origin: center center; 
 }
+
+/* ========================================================
+   ESTRUCTURA DE FONDO PANORÁMICO UNIVERSAL (HERO BAND)
+   ======================================================== */
+.hero-seccion-fantásticos,
+.hero-band-global {
+    width: 100%;
+    min-height: 480px; /* Alto generoso para lucir el arte de fondo */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Alinea los textos a la izquierda sobre la imagen */
+    padding: 60px 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #050507;
+    
+    /* RUTA DE LA IMAGEN: Cambia este archivo en cada HTML correspondiente */
+    background-image: url('../../IM_PERSONAJES/4fantasticos_fondo.png') !important; 
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* El degradé Stark protector: Oscurece el fondo para que las letras rojas y blancas resalten al 100% */
+.hero-seccion-fantásticos::before,
+.hero-band-global::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, 
+        rgba(12, 12, 12, 0.9) 0%, 
+        rgba(12, 12, 12, 0.5) 50%, 
+        rgba(12, 12, 12, 0.8) 100%
+    ) !important;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Forzamos a todo el contenido interno (títulos y textos) a posicionarse arriba del degradé */
+.hero-seccion-fantásticos > *,
+.hero-band-global > * {
+    position: relative;
+    z-index: 10;
+}
+
+
+.galeria-contenedor-fantasticos {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  max-width: 1400px !important; 
+  margin: 40px auto 80px !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+}
+
+.galeria-contenedor-fantasticos .tarjeta-heroe {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+}
+
+.galeria-contenedor-fantasticos .tarjeta-heroe:hover {
+  transform: translateY(-6px);
+  border-color: var(--red);
+}
+
+.galeria-contenedor-fantasticos .imagen-contenedor {
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background-color: #000;
+  position: relative;
+}
+
+.galeria-contenedor-fantasticos .imagen-contenedor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* MAPEO ABSOLUTO POR CLASE DIRECTA */
+.f4-ben { grid-column: 1 !important; grid-row: 1 !important; }
+.f4-ben .imagen-contenedor img { object-position: center 10% !important; }
+
+.f4-reed { grid-column: 2 !important; grid-row: 1 !important; }
+.f4-reed .imagen-contenedor img { object-position: center 12% !important; }
+
+.f4-sue { grid-column: 3 !important; grid-row: 1 !important; }
+.f4-sue .imagen-contenedor img { object-position: center 14% !important; }
+
+.f4-johnny { grid-column: 4 !important; grid-row: 1 !important; }
+.f4-johnny .imagen-contenedor img { object-position: center 15% !important; }
+
+.f4-franklin { grid-column: 2 !important; grid-row: 2 !important; }
+.f4-franklin .imagen-contenedor img { object-position: center top !important; }
+
+.f4-valeria { grid-column: 3 !important; grid-row: 2 !important; }
+.f4-valeria .imagen-contenedor img { object-position: center top !important; }
+
+/* HOVER Y TEXTOS CONTENEDORES */
+.galeria-contenedor-fantasticos .imagen-contenedor .img-hover { position: absolute; top: 0; left: 0; opacity: 0; }
+.galeria-contenedor-fantasticos .tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) { opacity: 0; }
+.galeria-contenedor-fantasticos .tarjeta-heroe:hover .imagen-contenedor .img-hover { opacity: 1; filter: brightness(1.05); }
+.galeria-contenedor-fantasticos .info-contenedor { padding: 16px 12px; text-align: center; }
+.galeria-contenedor-fantasticos .info-contenedor .nombre { color: var(--ink); font-family: var(--font-nav); font-size: 16px; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 4px; text-transform: uppercase; }
+.galeria-contenedor-fantasticos .info-contenedor .origen { color: var(--foil); font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+

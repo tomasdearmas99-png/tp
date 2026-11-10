@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #0d0903; /* Fondo oro cósmico ultra oscuro */
+    --surface-box: rgba(30, 22, 10, 0.7);
+    --border-color: #543f1a; /* Oro bruñido Soberano */
+    --text-primary: #fff7eb;
+    --text-muted: #bd9f8d;
+    --stark-gold: #eab308; /* Resplandor dorado de su piel y aura de energía fotónica */
+    --marvel-red: #be123c; /* Capa soberana */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(234, 179, 8, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

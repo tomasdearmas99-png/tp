@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #040406; /* Negro absoluto de Wakanda */
+    --surface-box: rgba(14, 14, 20, 0.7);
+    --border-color: #241438; /* Tinte morado de la energía cinética del vibranium */
+    --text-primary: #f0eaf5;
+    --text-muted: #8d85a1;
+    --stark-gold: #a855f7; /* Brillo cinético púrpura */
+    --marvel-red: #1c1917; /* Detalles oscuros */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(168, 85, 247, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

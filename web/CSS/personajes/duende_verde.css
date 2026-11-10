@@ -1,0 +1,15 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #050a06; /* Verde armadura militar Oscorp oscuro */
+    --surface-box: rgba(12, 26, 16, 0.7);
+    --border-color: #1c3d20; /* Verde esmeralda */
+    --text-primary: #effbf1;
+    --text-muted: #8ca391;
+    --stark-gold: #f97316; /* Resplandor naranja calabaza de sus explosivos */
+    --marvel-red: #7e22ce; /* Tinte púrpura de su clásica túnica */
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(249, 115, 22, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

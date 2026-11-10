@@ -1,0 +1,13 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #050810; /* Azul casco espacial soviético */
+    --surface-box: rgba(14, 22, 38, 0.7);
+    --border-color: #22355c; /* Gris acero industrial de Knowhere */
+    --text-primary: #ecf1fafd;
+    --text-muted: #8ca0cc;
+    --stark-gold: #38bdf8; /* Halo cian/celeste de su energía mental psíquica */
+    --marvel-red: #cc252c; /* Traje espacial ribetes */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(56, 189, 248, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #040814; /* Fondo azul galaxia cósmica profunda */
+    --surface-box: rgba(10, 16, 32, 0.7);
+    --border-color: #1a2a4a; /* Azul estelar Kree */
+    --text-primary: #e6efff;
+    --text-muted: #8da2bd;
+    --stark-gold: #eab308; /* Destello dorado binario */
+    --marvel-red: #be123c; /* Escudo carmesí */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(234, 179, 8, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

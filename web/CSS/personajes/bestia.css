@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #040810; /* Azul pelaje profundo oscurecido */
+    --surface-box: rgba(10, 18, 36, 0.7);
+    --border-color: #1a2f59;
+    --text-primary: #e6efff;
+    --text-muted: #8ea1c2;
+    --stark-gold: #38bdf8; /* Azul eléctrico Bestia */
+    --marvel-red: #1d4ed8;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(56, 189, 248, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

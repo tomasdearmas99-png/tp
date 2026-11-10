@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #030814; /* Azul Centauriano profundo */
+    --surface-box: rgba(10, 20, 36, 0.7);
+    --border-color: #1a2e4a;
+    --text-primary: #e6f0ff;
+    --text-muted: #8da6bd;
+    --stark-gold: #ef4444; /* Resplandor rojo neón de la Flecha de Yaka táctica */
+    --marvel-red: #dc2626;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(239, 68, 68, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

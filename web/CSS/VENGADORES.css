@@ -326,14 +326,18 @@ section.contenido p {
 }
 
 /* SECCIÓN: GALERÍA DE HÉROES (Estructura balanceada de 4 columnas) */
+/* ========================================================
+   GRILLA ENSANCHADA DE BORDE A BORDE (MÁXIMA SIMETRÍA)
+   ======================================================== */
+/* SECCIÓN: GALERÍA DE HÉROES (ESTRUCTURA ANCHA DE 4 COLUMNAS ORIGINAL) */
 .galeria-contenedor { 
-  display: grid; 
-  /* Reducimos de 8 a 4 columnas para que cada tarjeta tenga el doble de espacio horizontal y sea ancha */
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px; /* Separación estándar muy limpia */ 
-  max-width: 1400px; /* Se expande por casi toda la pantalla eliminando los bordes vacíos */
-  margin: 40px auto 80px; 
-  padding: 0 24px; 
+  display: grid !important; 
+  grid-template-columns: repeat(4, 1fr) !important; 
+  gap: 20px !important; 
+  max-width: 1400px !important; 
+  margin: 40px auto 80px !important; 
+  padding: 0 24px !important; 
+  box-sizing: border-box !important;
 }
 
 .tarjeta-heroe { 
@@ -343,13 +347,13 @@ section.contenido p {
   cursor: pointer; 
   display: flex;
   flex-direction: column;
-  width: 100%; 
+  width: 100% !important; 
 }
 
-/* REGLA ESPECIAL: El Capitán América se vuelve el doble de ancho (ocupa 2 columnas) y el doble de alto */
+/* REGLA ESPECIAL COMPLETA: El Capitán América ocupa el espacio doble de la esquina */
 .tarjeta-heroe:nth-child(1) {
-  grid-column: span 2;      
-  grid-row: span 2; 
+  grid-column: span 2 !important;      
+  grid-row: span 2 !important; 
 }
 
 .tarjeta-heroe:hover { 
@@ -359,41 +363,34 @@ section.contenido p {
 
 .imagen-contenedor { 
   width: 100%; 
-  height: 440px; /* Tus 440px originales para que mantengan la proporción perfecta al ser anchas */
+  height: 440px; 
   overflow: hidden; 
   border-bottom: 1px solid var(--border); 
   background-color: #000; 
-  position: relative; /* OBLIGATORIO: Permite que la imagen hover se posicione encima de la normal */
+  position: relative; 
 }
 
-/* Hace que la imagen del Capitán América llene su nuevo espacio destacado de forma perfecta */
 .tarjeta-heroe:nth-child(1) .imagen-contenedor {
-  height: 100%;
-  flex-grow: 1;
+  height: 100% !important;
+  flex-grow: 1 !important;
 }
 
-/* ========================================================
-   ESTILOS DE IMÁGENES Y EFECTO HOVER (INTERCAMBIO)
-   ======================================================== */
-
-/* Estilos base para todas las imágenes (normales y de hover) */
+/* INTERCAMBIO AL PASAR EL CURSOR */
 .imagen-contenedor img { 
   width: 100%; 
   height: 100%; 
   object-fit: cover; 
   filter: brightness(0.85); 
-  transition: opacity 0.4s ease, filter 0.3s ease; /* Transición suave de opacidad */
+  transition: opacity 0.4s ease, filter 0.3s ease; 
 }
 
-/* La imagen de hover se posiciona de forma absoluta oculta por defecto */
 .imagen-contenedor .img-hover {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0; /* Totalmente transparente al inicio */
+  opacity: 0; 
 }
 
-/* Al pasar el cursor por la tarjeta: se oculta la imagen normal y se muestra la de hover */
 .tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) { 
   opacity: 0; 
 }
@@ -403,11 +400,7 @@ section.contenido p {
   filter: brightness(1.05); 
 }
 
-
-/* ========================================================
-   TEXTOS E INFORMACIÓN
-   ======================================================== */
-
+/* TEXTOS INTERNOS */
 .info-contenedor { 
   padding: 16px 12px; 
   text-align: center; 
@@ -432,96 +425,3 @@ section.contenido p {
   text-transform: uppercase; 
 }
 
-
-/* ========================================================
-   ENCUADRE AJUSTADO INDIVIDUAL (AFECTA A AMBAS IMÁGENES)
-   ======================================================== */
-
-/* 1. CAPITÁN AMÉRICA */
-.tarjeta-heroe:nth-child(1) .imagen-contenedor img {
-  object-position: center center;
-}
-
-/* 2. THOR */
-.tarjeta-heroe:nth-child(2) .imagen-contenedor img {
-  object-position: center center;
-}
-
-/* 3. HULK */
-.tarjeta-heroe:nth-child(3) .imagen-contenedor img {
-  object-position: center center;
-}
-
-/* 4. IRON MAN */
-.tarjeta-heroe:nth-child(4) .imagen-contenedor img {
-  object-position: center 5%;
-}
-
-/* 5. BLACK WIDOW */
-.tarjeta-heroe:nth-child(5) .imagen-contenedor img {
-  object-position: center 12%;
-}
-
-/* 6. HAWKEYE */
-.tarjeta-heroe:nth-child(6) .imagen-contenedor img {
-  object-position: center top;
-}
-
-/* 7. SCARLET WITCH */
-.tarjeta-heroe:nth-child(7) .imagen-contenedor img {
-  object-position: center top;
-}
-
-/* 8. VISIÓN */
-.tarjeta-heroe:nth-child(8) .imagen-contenedor img {
-  object-position: center center;
-}
-
-/* 9. FALCON */
-.tarjeta-heroe:nth-child(9) .imagen-contenedor img {
-  object-position: center top;
-}
-
-/* 10. WAR MACHINE */
-.tarjeta-heroe:nth-child(10) .imagen-contenedor img {
-  object-position: center 5%;
-}
-
-/* 11. CAPITANA MARVEL */
-.tarjeta-heroe:nth-child(11) .imagen-contenedor img {
-  object-position: center top;
-}
-
-/* 12. SPIDER-MAN */
-.tarjeta-heroe:nth-child(12) .imagen-contenedor img {
-  object-position: center center;
-}
-
-/* 13. BLACK PANTHER */
-.tarjeta-heroe:nth-child(13) .imagen-contenedor img {
-  object-position: center top;
-}
-
-/* 14. DOCTOR STRANGE */
-.tarjeta-heroe:nth-child(14) .imagen-contenedor img {
-  object-position: center top;
-}
-
-/* 15. ANT-MAN */
-.tarjeta-heroe:nth-child(15) .imagen-contenedor img {
-  object-position: center top;
-}
-
-
-/* PIE DE PÁGINA (FOOTER) */
-.pie-pagina {
-  width: 100%;
-  text-align: center;
-  padding: 40px 24px;
-  border-top: 1px solid var(--border);
-}
-.pie-pagina p {
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}

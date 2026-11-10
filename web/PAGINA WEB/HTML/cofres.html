@@ -90,7 +90,6 @@
   <script>
     let datosCartaRecibida = null;
 
-    // Ahora la función recibe la ruta específica de la imagen del cofre que tocaste
     function comprarCofreStark(tipo, rutaImagenCofre) {
         const tienda = document.getElementById('seccion-tienda-cofres');
         const arena = document.getElementById('arena-apertura');
@@ -98,62 +97,76 @@
         const btnAbrir = document.getElementById('btn-revelar-carta-click');
         const resultado = document.getElementById('carta-revelada-resultado');
         const btnVolver = document.getElementById('btn-volver-boveda');
+        const btnCancelar = document.getElementById('btn-cancelar-antes-abrir');
 
         // Asignamos de forma exacta la foto del cofre comprado a la animación flotante
         cofreImg.src = rutaImagenCofre;
         cofreImg.className = "cofre-imagen-flotante latido-espera";
 
-        // Reset de interfaz
+        // Reset de interfaz y restauración del botón de cancelar
         resultado.style.display = "none";
         btnVolver.style.display = "none";
         btnAbrir.style.display = "inline-block";
         btnAbrir.disabled = true;
         btnAbrir.innerText = "Sincronizando Core...";
+        if (btnCancelar) btnCancelar.style.display = "inline-block";
 
         tienda.style.display = "none";
         arena.style.display = "block";
 
-        let formData = new FormData();
-        formData.append('tipo_cofre', tipo);
+        // CORRECCIÓN RADICAL: JavaScript calcula la raíz de tu XAMPP automáticamente
+        const urlDestinoPHP = window.location.origin + '/tp-main/web/PHP/abrir_cofre.php';
 
-        fetch('../../PHP/abrir_cofre.php', { method: 'POST', body: formData })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'error') {
-                    alert(data.mensaje);
-                    regresarABoveda();
-                    return;
-                }
-                datosCartaRecibida = data;
-                btnAbrir.disabled = false;
-                btnAbrir.innerText = "¡ABRIR COFRE!";
-            })
-            .catch(err => {
-                alert("Fallo crítico de red.");
+        fetch(urlDestinoPHP, { 
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            body: new URLSearchParams({ 'tipo_cofre': tipo })
+        })
+
+        .then(res => {
+            if (!res.ok) throw new Error("Fallo de red del servidor local.");
+            return res.json();
+        })
+        .then(data => {
+            if (data.status === 'error') {
+                alert(data.mensaje);
                 regresarABoveda();
-            });
+                return;
+            }
+            datosCartaRecibida = data;
+            btnAbrir.disabled = false;
+            btnAbrir.innerText = "¡ABRIR COFRE!";
+        })
+        .catch(err => {
+            alert("Fallo crítico de red: El Core de la base de datos no respondió. Inténtalo de nuevo.");
+            console.error(err);
+            regresarABoveda();
+        });
     }
 
-// Busca esta función abajo en tu script y agrégale esta línea para ocultar el cancelar:
-function revelarPremioOculto() {
-    if (!datosCartaRecibida) return;
+    function revelarPremioOculto() {
+        if (!datosCartaRecibida) return;
 
-    const cofreImg = document.getElementById('cofre-animado-target');
-    const btnAbrir = document.getElementById('btn-revelar-carta-click');
-    const resultado = document.getElementById('carta-revelada-resultado');
-    const btnVolver = document.getElementById('btn-volver-boveda');
-    
-    // NUEVA LÍNEA: Oculta el botón de cancelar al iniciar la explosión
-    document.getElementById('btn-cancelar-antes-abrir').style.display = "none";
+        const cofreImg = document.getElementById('cofre-animado-target');
+        const btnAbrir = document.getElementById('btn-revelar-carta-click');
+        const resultado = document.getElementById('carta-revelada-resultado');
+        const btnVolver = document.getElementById('btn-volver-boveda');
+        const btnCancelar = document.getElementById('btn-cancelar-antes-abrir');
+        
+        // Oculta el botón de cancelar al iniciar la explosión de forma segura
+        if (btnCancelar) btnCancelar.style.display = "none";
 
-    btnAbrir.style.display = "none";
-    cofreImg.className = "cofre-imagen-flotante explosion-apertura";
-    
-    // ... resto de tu código de temporizador ...
-
+        btnAbrir.style.display = "none";
+        cofreImg.className = "cofre-imagen-flotante explosion-apertura";
 
         setTimeout(() => {
             cofreImg.style.display = "none";
+            
+            // BLINDAJE DE RUTAS: Extraemos el nombre del archivo y codificamos caracteres especiales como (#1)
+            let nombreArchivo = datosCartaRecibida.ruta_imagen.split('/').pop();
+            let rutaSeguraCarta = '../../IM_CARTAS/' + encodeURIComponent(nombreArchivo);
             
             resultado.innerHTML = `
                 <div class="carta-marvel-container ${datosCartaRecibida.rareza.toLowerCase()}">
@@ -161,14 +174,14 @@ function revelarPremioOculto() {
                     <div class="carta-rareza-banner">${datosCartaRecibida.rareza}</div>
                     
                     <div class="carta-wrapper-img">
-                        <img src="${datosCartaRecibida.ruta_imagen}" alt="${datosCartaRecibida.nombre}" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
+                        <img src="${rutaSeguraCarta}" alt="${datosCartaRecibida.nombre}" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">
                     </div>
 
                     <h3 class="carta-titulo-display">${datosCartaRecibida.nombre}</h3>
                     
                     <div class="carta-stats-indicador">
-                        <span class="stat-atk">⚔️ ATK: ${datosCartaRecibida.ataque}</span>
-                        <span class="stat-def">🛡️ DEF: ${datosCartaRecibida.defensa}</span>
+                        <span class="stat-atk">ATK: ${datosCartaRecibida.ataque}</span>
+                        <span class="stat-def">DEF: ${datosCartaRecibida.defensa}</span>
                     </div>
                 </div>
             `;
@@ -184,5 +197,6 @@ function revelarPremioOculto() {
         datosCartaRecibida = null;
     }
   </script>
+
 </body>
 </html>

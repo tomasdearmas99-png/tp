@@ -1,0 +1,342 @@
+/* VARIABLES DE DISEÑO STARK TECH */
+:root {
+    --bg-dark: #08080c;
+    --surface-box: rgba(14, 14, 20, 0.6);
+    --border-color: #1a1a24;
+    --text-primary: #f2ece1;
+    --text-muted: #9c9184;
+    --stark-gold: #c9a227;
+    --marvel-red: #ed1d24;
+}
+
+.ficha-body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+}
+
+/* BOTÓN FLOTANTE REGRESAR */
+.btn-regresar-navegacion {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    z-index: 100;
+    color: var(--text-primary);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    background: rgba(8, 8, 12, 0.8);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-regresar-navegacion:hover {
+    border-color: var(--marvel-red);
+    color: var(--marvel-red);
+    background: rgba(237, 29, 36, 0.05);
+}
+
+/* --- BANNER SUPERIOR INDEPENDIENTE --- */
+.personaje-hero {
+    width: 100%;
+    height: 440px;
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 8, 12, 0.3) 0%, var(--bg-dark) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.top-nav-mock {
+    font-size: 11px;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.top-nav-mock .active {
+    color: var(--stark-gold);
+    font-weight: bold;
+}
+
+.personaje-title-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(46px, 5.5vw, 72px);
+    letter-spacing: 8px;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.personaje-subtitle-main {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 4px 0 16px;
+}
+
+.decoracion-linea-stark {
+    width: 160px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--stark-gold), transparent);
+    margin: 0 auto;
+}
+
+/* --- GRID LAYOUT AJUSTADO DE 3 COLUMNAS independientes --- */
+.personaje-grid-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    gap: 20px;
+    max-width: 1280px;
+    margin: 20px auto 80px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: start;
+}
+
+/* Bloques contenedores por columna para evitar descalces */
+.columna-izquierda-bloque,
+.columna-central-bloque,
+.columna-derecha-bloque {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cajas modulares */
+.modulo-ficha {
+    background-color: var(--surface-box);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modulo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+}
+
+.modulo-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+}
+
+.modulo-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modulo-value-destacado {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    color: var(--stark-gold);
+    margin: 0 0 14px 0;
+    text-align: center;
+}
+
+/* --- CONTROL INDIVIDUAL DE MÓDULOS --- */
+
+/* Render vertical grande */
+.modulo-imagen-personaje {
+    padding: 0;
+    overflow: hidden;
+    height: 380px;
+}
+.img-render-vertical {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Relacionados abajo */
+.relacionados-lista {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    width: 100%;
+}
+.circulo-avatar-item {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #1c1c28;
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+.circulo-avatar-item:hover {
+    transform: scale(1.08);
+}
+.circulo-avatar-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Lore Central */
+.modulo-lore-central {
+    padding: 30px;
+    align-items: stretch;
+}
+.cita-bloque {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cita-texto {
+    font-style: italic;
+    font-size: 16px;
+    color: var(--stark-gold);
+    margin: 0 0 4px 0;
+}
+.cita-autor {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.letra-capital {
+    float: left;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 42px;
+    padding-right: 10px;
+    color: var(--text-primary);
+}
+.biografia-texto {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0;
+    text-align: justify;
+}
+
+/* Indicadores institucionales */
+.icono-indicador-box {
+    width: 44px;
+    height: 44px;
+}
+.icono-procedencia-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.logo-universo-box {
+    background-color: var(--marvel-red);
+    padding: 4px 12px;
+    border-radius: 2px;
+}
+.logo-marvel-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    .personaje-grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================================
+   ESTILOS DE AVATARES RELACIONADOS CON RUTAS INTERACTIVAS
+   ======================================================== */
+
+.relacionados-lista {
+    display: flex !important;
+    gap: 16px !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100%;
+}
+
+/* Enlace contenedor que agrupa verticalmente la foto y el texto pequeño */
+.relacionado-item-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 70px; /* Ancho fijo para equilibrar el espaciado sin cortes */
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.relacionado-item-link:hover {
+    transform: translateY(-4px);
+}
+
+.circulo-avatar-item {
+    width: 60px !important; /* Calibración exacta para evitar desbordes */
+    height: 60px !important;
+    border-radius: 50%;
+    border: 2px solid #1c1c28;
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
+    overflow: hidden;
+    background-color: #000;
+    margin-bottom: 6px;
+}
+
+.circulo-avatar-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    object-position: center top;
+}
+
+/* Letra pequeña estilizada para los nombres debajo del avatar */
+.relacionado-nombre-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    white-space: nowrap; /* Evita que el nombre se corte en dos renglones */
+}
+
+.relacionado-item-link:hover .relacionado-nombre-tag {
+    color: var(--stark-gold); /* El nombre se ilumina en dorado al pasar el cursor */
+}

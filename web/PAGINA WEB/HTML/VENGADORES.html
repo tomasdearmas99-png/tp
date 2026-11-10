@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/VENGADORES.css">
+    <!-- TRUCO DE VACÍADO DE CACHÉ: Forzamos al navegador a leer la grilla unificada de 4 columnas -->
+    <link rel="stylesheet" href="../../CSS/VENGADORES.css?v=2">
     <title>VENGADORES</title>
 </head>
+
 <body>
     <HEADER>
     <h1>
@@ -73,7 +75,7 @@
         <img src="../../IM_BUSQUEDA/guante.jpg" alt="Gemas del infinito">
         <span><span class="nombre">Gemas del infinito</span><span class="rol">Artefactos de poder cósmico</span></span>
       </a></li>
-      <li><a href="../../spidermans.html">
+      <li><a href="../../PAGINA WEB/HTML/spidermans.html">
         <img src="../../IM_BUSQUEDA/spiderman.webp" alt="Spidermans">
         <span><span class="nombre">Spidermans</span><span class="rol">El Spider-Verse reunido</span></span>
       </a></li>
@@ -100,188 +102,192 @@
       <p class="section-title__eyebrow">Miembros del equipo</p>
       <h2>Integrantes principales</h2>
     </div>
-
- <section class="galeria-contenedor">
         
-    <!-- 1. CAPITAN AMERICA (TARJETA DESTACADA AL INICIO) -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/CAPITAN AMERICA.jpeg" alt="Capitán América">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/CAPITAN_AMERICA_COMIC.jpeg" alt="Capitán América Acción" class="img-hover">
-        </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">CAPITAN AMERICA</h2>
-            <p class="origen">SUPER SOLDADO</p>
-        </div>
-    </div>
+    <!-- La galería empieza limpia afuera del texto -->
+    <section class="galeria-contenedor">
 
-    <!-- 2. THOR -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/Thor.jpeg" alt="Dios Del Trueno">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/THOR_COMIC.jpeg" alt="Dios Del Trueno Acción" class="img-hover">
+        <!-- 1. CAPITÁN AMÉRICA (Usa el onclick directo que no rompe el CSS) -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/capitan_america.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/CAPITAN AMERICA.jpeg" alt="Capitán América">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/CAPITAN_AMERICA_COMIC.jpeg" class="img-hover" alt="Capitán América Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">CAPITÁN AMÉRICA</h2>
+                <p class="origen">SÚPER SOLDADO</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">Thor</h2>
-            <p class="origen">DIOS DEL TRUENO</p>
-        </div>
-    </div>
 
-    <!-- 3. HULK -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/HULK.jpeg" alt="Hulk">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/HULK_COMICS.png" alt="Hulk Acción" class="img-hover">
+        <!-- 2. THOR -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/thor.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/Thor.jpeg" alt="Thor">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/THOR_COMIC.jpeg" class="img-hover" alt="Thor Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">THOR</h2>
+                <p class="origen">DIOS DEL TRUENO</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">HULK</h2>
-            <p class="origen">EL MONSTRUO VERDE</p>
-        </div>
-    </div>
 
-    <!-- 4. IRON MAN -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/IRON-MAN.jpg" alt="IRON MAN">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/IRON_MAN_COMICS.png" alt="IRON MAN Acción" class="img-hover">
+        <!-- 3. HULK -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/hulk.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/HULK.jpeg" alt="Hulk">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/HULK_COMICS.png" class="img-hover" alt="Hulk Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">HULK</h2>
+                <p class="origen">EL MONSTRUO VERDE</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">IRON MAN</h2>
-            <p class="origen">MILLONARIO, FILANTROPO E INVENTOR</p>
-        </div>
-    </div>
 
-    <!-- 5. BLACK WIDOW -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/NATASHA.jpg" alt="BLACK WIDOW">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/NATASHA_COMICS.png" alt="BLACK WIDOW Acción" class="img-hover">
+        <!-- 4. IRON MAN -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/iron_man.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/IRON-MAN.jpg" alt="IRON MAN">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/IRON_MAN_COMICS.png" class="img-hover" alt="Iron Man Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">IRON MAN</h2>
+                <p class="origen">MILLONARIO, FILÁNTROPO E INVENTOR</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">BLACK WIDOW</h2>
-            <p class="origen">VIUDA NEGRA</p>
-        </div>
-    </div>
 
-    <!-- 6. HAWKEYE -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/HAWKEYE.jpeg" alt="Hawkeye">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/HAWKEYE_COMICS.jpeg" alt="Hawkeye Acción" class="img-hover">
+        <!-- 5. BLACK WIDOW -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/black_widow.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/NATASHA.jpg" alt="BLACK WIDOW">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/NATASHA_COMICS.png" class="img-hover" alt="Black Widow Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">BLACK WIDOW</h2>
+                <p class="origen">VIUDA NEGRA</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">HAWKEYE</h2>
-            <p class="origen">EL MEJOR TIRADOR</p>
-        </div>
-    </div>
 
-    <!-- 7. SCARLET WITCH -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/SCARLET WITCH.jpeg" alt="Scarlet Witch">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/SCARLET_WITCH_COMICS.png" alt="Scarlet Witch Acción" class="img-hover">
+        <!-- 6. HAWKEYE -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/hawkeye.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/HAWKEYE.jpeg" alt="Hawkeye">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/HAWKEYE_COMICS.jpeg" class="img-hover" alt="Hawkeye Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">HAWKEYE</h2>
+                <p class="origen">EL MEJOR TIRADOR</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">SCARLET WITCH</h2>
-            <p class="origen">BRUJA ESCARLATA</p>
-        </div>
-    </div>
 
-    <!-- 8. VISION -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/VISION.jpeg" alt="Visión">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/VISION_COMICS.png" alt="Visión Acción" class="img-hover">
+        <!-- 7. SCARLET WITCH -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/scarlet_witch.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/SCARLET WITCH.jpeg" alt="Scarlet Witch">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/SCARLET_WITCH_COMICS.png" class="img-hover" alt="Scarlet Witch Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">SCARLET WITCH</h2>
+                <p class="origen">BRUJA ESCARLATA</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">VISIÓN</h2>
-            <p class="origen">SINTENOIDE EVOLUCIONADO</p>
-        </div>
-    </div>
 
-    <!-- 9. FALCON -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/FALCON.jpeg" alt="Falcon">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/FALCON_COMICS.png" alt="Falcon Acción" class="img-hover">
+        <!-- 8. VISIÓN -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/vision.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/VISION.jpeg" alt="Visión">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/VISION_COMICS.png" class="img-hover" alt="Visión Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">VISIÓN</h2>
+                <p class="origen">SINTENOIDE EVOLUCIONADO</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">FALCON</h2>
-            <p class="origen">EL NUEVO CAPITÁN AMÉRICA</p>
-        </div>
-    </div>
 
-    <!-- 10. WAR MACHINE -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/WAR MACHINE.jpeg" alt="War Machine">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/WAR_MACHINE_COMICS.png" alt="War Machine Acción" class="img-hover">
+        <!-- 9. FALCON -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/falcon.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/FALCON.jpeg" alt="Falcon">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/FALCON_COMICS.png" class="img-hover" alt="Falcon Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">FALCON</h2>
+                <p class="origen">EL NUEVO CAPITÁN AMÉRICA</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">WAR MACHINE</h2>
-            <p class="origen">ARMA DE GUERRA</p>
-        </div>
-    </div>
 
-    <!-- 11. CAPITANA MARVEL -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/CAPITANA MARVEL.jpeg" alt="Capitana Marvel">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/CAPITANA_MARVEL_COMICS.jpg" alt="Capitana Marvel Acción" class="img-hover">
+        <!-- 10. WAR MACHINE -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/war_machine.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/WAR MACHINE.jpeg" alt="War Machine">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/WAR_MACHINE_COMICS.png" class="img-hover" alt="War Machine Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">WAR MACHINE</h2>
+                <p class="origen">ARMA DE GUERRA</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">CAPITANA MARVEL</h2>
-            <p class="origen">PROTECTORA DEL UNIVERSO</p>
-        </div>
-    </div>
 
-    <!-- 12. SPIDER-MAN -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/SPIDERMAN(TOMHOLLAND).jpeg" alt="Spider-Man">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/SPIDER_MAN_COMICS.png" alt="Spider-Man Acción" class="img-hover">
+        <!-- 11. CAPITANA MARVEL -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/capitana_marvel.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/CAPITANA MARVEL.jpeg" alt="Capitana Marvel">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/CAPITANA_MARVEL_COMICS.jpg" class="img-hover" alt="Capitana Marvel Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">CAPITANA MARVEL</h2>
+                <p class="origen">PROTECTORA DEL UNIVERSO</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">SPIDER-MAN</h2>
-            <p class="origen">EL HOMBRE ARAÑA</p>
-        </div>
-    </div>
 
-    <!-- 13. BLACK PANTHER -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/T´CHALLA.jpeg" alt="Black Panther">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/BLACK_PANTHER_COMICS.jpg" alt="Black Panther Acción" class="img-hover">
+        <!-- 12. SPIDER-MAN -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/spiderman.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/SPIDERMAN(TOMHOLLAND).jpeg" alt="Spider-Man">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/SPIDER_MAN_COMICS.png" class="img-hover" alt="Spider-Man Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">SPIDER-MAN</h2>
+                <p class="origen">EL HOMBRE ARAÑA</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">BLACK PANTHER</h2>
-            <p class="origen">REY DE WAKANDA</p>
-        </div>
-    </div>
 
-    <!-- 14. DOCTOR STRANGE -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/DR_STRANGE.jpeg" alt="Doctor Strange">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/DR_STRANGE_COMIC.png" alt="Doctor Strange Acción" class="img-hover">
+        <!-- 13. BLACK PANTHER -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/black_panther.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/T´CHALLA.jpeg" alt="Black Panther">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/BLACK_PANTHER_COMICS.jpg" class="img-hover" alt="Black Panther Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">BLACK PANTHER</h2>
+                <p class="origen">REY DE WAKANDA</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">DOCTOR STRANGE</h2>
-            <p class="origen">HECHICERO SUPREMO</p>
-        </div>
-    </div>
 
-    <!-- 15. ANT-MAN -->
-    <div class="tarjeta-heroe">
-        <div class="imagen-contenedor">
-            <img src="../../IM_PERSONAJES/ANT-MAN.jpeg" alt="Ant-Man">
-            <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/ANT_MAN_COMICS.png" alt="Ant-Man Acción" class="img-hover">
+        <!-- 14. DOCTOR STRANGE -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/doctor_strange.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/DR_STRANGE (2).png" alt="Doctor Strange">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/DR_STRANGE_COMIC.png" class="img-hover" alt="Doctor Strange Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">DOCTOR STRANGE</h2>
+                <p class="origen">HECHICERO SUPREMO</p>
+            </div>
         </div>
-        <div class="info-contenedor">
-            <h2 class="nombre">ANT-MAN</h2>
-            <p class="origen">EL HOMBRE HORMIGA</p>
+
+        <!-- 15. ANT-MAN -->
+        <div class="tarjeta-heroe" onclick="window.location.href='personajes/ant_man.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/ANT-MAN.jpeg" alt="Ant-Man">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/ANT_MAN_COMICS.png" class="img-hover" alt="Ant-Man Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">ANT-MAN</h2>
+                <p class="origen">TECNOLOGÍA SUBATÓMICA PYM</p>
+            </div>
         </div>
-    </div>
+
+
+    </section>
 
 </section>
 

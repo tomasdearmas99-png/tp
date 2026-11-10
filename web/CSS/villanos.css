@@ -464,3 +464,163 @@ section.contenido p {
 .imagen-contenedor {
   background: linear-gradient(160deg, var(--surface-2), var(--red-deep));
 }
+
+/* SECCIÓN VILLANOS: ALINEACIÓN CENTRAL ANCHA CON SIMETRÍA PERFECTA */
+.galeria-contenedor {
+  display: grid;
+  /* Forzamos una grilla fija de 4 columnas para lograr el balance exacto en los costados */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 40px auto 80px;
+  padding: 0 24px;
+}
+
+.tarjeta-heroe {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tarjeta-heroe:hover {
+  transform: translateY(-6px);
+  border-color: var(--red);
+}
+
+.imagen-contenedor {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background-color: #000;
+  position: relative;
+}
+
+/* ========================================================
+   REGLAS DE COORDENADAS PARA ENCUADRAR LA FILA SUPERIOR
+   ======================================================== */
+
+/* 1. GALACTUS: Ocupa las dos columnas del medio (la 2 y la 3) estirándose hacia abajo */
+.tarjeta-heroe:nth-child(1) {
+  grid-column: 2 / span 2;      
+  grid-row: span 2; 
+}
+
+/* Forzamos al contenedor de imagen de Galactus a usar el 100% de la altura doble */
+.tarjeta-heroe:nth-child(1) .imagen-contenedor {
+  height: 100%;
+  flex-grow: 1;
+}
+
+/* 2. THANOS: Lo mandamos obligatoriamente a la columna 1 (izquierda arriba) */
+.tarjeta-heroe:nth-child(2) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* 3. ULTRÓN: Lo mandamos obligatoriamente a la columna 4 (derecha arriba) */
+.tarjeta-heroe:nth-child(3) {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+/* Los demás villanos (Venom, Gorr, etc.) se acomodarán solos de forma fluida a partir de abajo */
+
+/* ========================================================
+   ESTILOS DE IMÁGENES Y EFECTO HOVER DE INTERCAMBIO
+   ======================================================== */
+/* ========================================================
+   RE-ESTILIZACIÓN VERTICAL: TARJETAS MÁS LARGAS Y RECTANGULARES
+   ======================================================== */
+.imagen-contenedor {
+  width: 100%;
+  height: 420px; /* CAMBIO CLAVE: Estiramos de 300px a 420px para que sean más larguitas */
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background-color: #000;
+  position: relative;
+}
+
+/* Forzamos al contenedor de imagen de Galactus a usar el 100% de su fila doble estirada */
+.tarjeta-heroe:nth-child(1) .imagen-contenedor {
+  height: 100%;
+  flex-grow: 1;
+}
+
+
+
+.imagen-contenedor .img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) { 
+  opacity: 0; 
+}
+
+.tarjeta-heroe:hover .imagen-contenedor .img-hover { 
+  opacity: 1; 
+  filter: brightness(1.05); 
+}
+
+.info-contenedor {
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.info-contenedor .nombre {
+  color: var(--ink);
+  font-family: var(--font-nav);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.info-contenedor .origen {
+  color: var(--foil);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ========================================================
+   FONDO NEGRO ABSOLUTO PARA CONTENEDORES SIN IMAGEN (PRO)
+   ======================================================== */
+.imagen-contenedor {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  
+  /* CLAVE DE LA VICTORIA: Forzamos negro plano y eliminamos cualquier degradado rojo heredado */
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+/* Ocultamos de forma estética el pequeño icono de imagen rota de los archivos que faltan */
+.imagen-contenedor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ========================================================
+   ENCUADRE INTERMEDIO PERFECTO PARA VENOM (DE BORDE A BORDE)
+   ======================================================== */
+.galeria-contenedor .tarjeta-heroe:nth-child(4) .imagen-contenedor img {
+  object-fit: cover !important; /* Vuelve a llenar la tarjeta de borde a borde */
+  object-position: center 12% !important; /* Baja la cámara lo justo para que entre la lengua y la mandíbula sin cortar la cabeza */
+}

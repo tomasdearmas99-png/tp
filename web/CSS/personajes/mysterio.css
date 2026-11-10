@@ -1,0 +1,14 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #040806; /* Verde gas de ilusión oscuro */
+    --surface-box: rgba(14, 26, 20, 0.7);
+    --border-color: #1a4d2e;
+    --text-primary: #eefaf3;
+    --text-muted: #8caea2;
+    --stark-gold: #a3e635; /* Brillo verde radioactivo de su casco de pecera */
+    --marvel-red: #7e22ce; /* Capa púrpura mística simulada */
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(163, 230, 53, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

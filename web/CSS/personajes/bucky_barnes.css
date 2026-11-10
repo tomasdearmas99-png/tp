@@ -1,0 +1,15 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #050608; /* Camuflaje oscuro de operaciones encubiertas */
+    --surface-box: rgba(15, 18, 24, 0.75);
+    --border-color: #242a35; /* Acero pesado mate */
+    --text-primary: #ebedf0;
+    --text-muted: #858c96;
+    --stark-gold: #94a3b8; /* Brillo platino reflectante de sus detalles de vibranium */
+    --marvel-red: #1e293b;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(148, 163, 184, 0.35) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

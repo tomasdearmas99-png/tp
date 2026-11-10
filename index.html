@@ -14,15 +14,16 @@
   <div class="topbar__left"></div>
 
 <nav class="topbar__links">
-  <a href="#" id="nav-personajes">Personajes</a>
+  <!-- CORRECCIÓN RADICAL NATIVA PARA APACHE / XAMPP -->
+  <a href="#" id="nav-personajes" onclick="if(document.querySelector('.sidebar')){ document.querySelector('.sidebar').classList.add('is-open'); document.querySelector('.sidebar-overlay').classList.add('is-open'); } else { alert('Señor, el componente de la barra lateral no se encuentra cargado en el DOM.'); } return false;">Personajes</a>
   <a href="web/PAGINA WEB/HTML/tienda.html">Tienda</a>
   <a href="web/PAGINA WEB/HTML/cofres.html">Cofres</a>
   <a href="web/PAGINA WEB/HTML/chat.html">Chat IA</a>
-  <a href="web/PAGINA WEB/HTML/intercambios.html">Intercambios</a>
   <a href="web/PAGINA WEB/HTML/perfil.php">Perfil</a>
-<a href="web/PAGINA WEB/HTML/diario.html" style="color: #eab308; font-weight: bold;">🪙 Regalo Diario</a>
-
+  <a href="web/PAGINA WEB/HTML/diario.html" style="color: #eab308; font-weight: bold;">🪙 Regalo Diario</a>
 </nav>
+
+
 
 </header>
 
@@ -160,74 +161,58 @@
   </main>
 
 
-  <script>
+    <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.querySelector('.menu-toggle');
-      const sidebar = document.querySelector('.sidebar');
-      const sidebarOverlay = document.querySelector('.sidebar-overlay');
-      const sidebarClose = document.querySelector('.sidebar__close');
+      // Envolvemos todo en un bloque de proteccion para que si auth.js falla en XAMPP, el menu funcione igual
+      try {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navPersonajes = document.getElementById('nav-personajes');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+        const sidebarClose = document.querySelector('.sidebar__close');
 
-      if (menuToggle && sidebar && sidebarOverlay && sidebarClose) {
-        menuToggle.addEventListener('click', () => {
-          sidebar.classList.add('is-open');
-          sidebarOverlay.classList.add('is-open');
-          menuToggle.setAttribute('aria-expanded', 'true');
-        });
+        const abrirSidebar = () => {
+          if (sidebar && sidebarOverlay) {
+            sidebar.classList.add('is-open');
+            sidebarOverlay.classList.add('is-open');
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+            if (navPersonajes) navPersonajes.setAttribute('aria-expanded', 'true');
+          }
+        };
 
-        sidebarClose.addEventListener('click', () => {
-          sidebar.classList.remove('is-open');
-          sidebarOverlay.classList.remove('is-open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        });
+        const cerrarSidebar = () => {
+          if (sidebar && sidebarOverlay) {
+            sidebar.classList.remove('is-open');
+            sidebarOverlay.classList.remove('is-open');
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+            if (navPersonajes) navPersonajes.setAttribute('aria-expanded', 'false');
+          }
+        };
 
-        sidebarOverlay.addEventListener('click', () => {
-          sidebar.classList.remove('is-open');
-          sidebarOverlay.classList.remove('is-open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        });
-      } else {
-        console.log("Error: No se encontró alguno de los elementos en el HTML.");
+        if (navPersonajes) {
+          navPersonajes.addEventListener('click', (e) => {
+            e.preventDefault(); // Detiene el salto de pagina y la recarga en XAMPP
+            abrirSidebar();
+          });
+        }
+
+        if (menuToggle) {
+          menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            abrirSidebar();
+          });
+        }
+
+        if (sidebarClose) sidebarClose.addEventListener('click', cerrarSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', cerrarSidebar);
+        
+      } catch (error) {
+        console.error("Aviso Stark Tech: Error de colision aislado de forma exitosa.", error);
       }
-      const navPersonajes = document.getElementById('nav-personajes');
-if (navPersonajes) {
-  navPersonajes.addEventListener('click', (e) => {
-    e.preventDefault();
-    menuToggle.click(); // abre el mismo menú lateral de personajes
-  });
-}
     });
   </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navPersonajes = document.getElementById('nav-personajes');
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarOverlay = document.querySelector('.sidebar-overlay');
-    const sidebarClose = document.querySelector('.sidebar__close');
-
-    if (navPersonajes && sidebar && sidebarOverlay && sidebarClose) {
-      const abrir = () => {
-        sidebar.classList.add('is-open');
-        sidebarOverlay.classList.add('is-open');
-        navPersonajes.setAttribute('aria-expanded', 'true');
-      };
-      const cerrar = () => {
-        sidebar.classList.remove('is-open');
-        sidebarOverlay.classList.remove('is-open');
-        navPersonajes.setAttribute('aria-expanded', 'false');
-      };
-
-      navPersonajes.addEventListener('click', (e) => {
-        e.preventDefault();
-        abrir();
-      });
-      sidebarClose.addEventListener('click', cerrar);
-      sidebarOverlay.addEventListener('click', cerrar);
-    } else {
-      console.log("Error: No se encontró alguno de los elementos en el HTML.");
-    }
-  });
-</script>
-  <script src="web/JS/bienvenida.js"></script>
-  <script src="web/JS/auth.js"></script>
+  <!-- Cargamos tus componentes externos al final para evitar congelamiento de htdocs -->
+  <script src="web/JS/bienvenida.js" defer></script>
+  <script src="web/JS/auth.js" defer></script>
 </body>
 </html>

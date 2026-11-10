@@ -8,10 +8,7 @@
 </head>
 <body>
     <HEADER>
-    <h1>
-           <div class="hero-band" id="que-es">
-      <p class="hero-band__eyebrow"></p>
-     <H1>VENGADORES</H1>
+
     </div>
     </h1>
     <header class="topbar">
@@ -73,7 +70,7 @@
         <img src="../../IM_BUSQUEDA/guante.jpg" alt="Gemas del infinito">
         <span><span class="nombre">Gemas del infinito</span><span class="rol">Artefactos de poder cósmico</span></span>
       </a></li>
-      <li><a href="../../spidermans.html">
+      <li><a href="../../PAGINA WEB/HTML/spidermans.html">
         <img src="../../IM_BUSQUEDA/spiderman.webp" alt="Spidermans">
         <span><span class="nombre">Spidermans</span><span class="rol">El Spider-Verse reunido</span></span>
       </a></li>
@@ -83,38 +80,54 @@
   
     <main>
 
-         <div class="hero-band" id="que-es">
-      
-      <h1>LOS 4 <span>FANTASTICOS</span></h1>
+    <div class="hero-band" id="que-es">
+      <h1>LOS <span>4 FANTÁSTICOS</span></h1>
     </div>
 
     <section class="contenido">
-      <h2>¿Qué son los 4 Fantasticos?</h2>
+      <h2>¿Qué son los 4 Fantásticos?</h2>
       <p>
-        Los 4 Fantásticos son una familia de superhéroes y exploradores de Marvel integrada por Reed Richards (cuerpo elástico), Sue Storm (invisibilidad y campos de fuerza), Johnny Storm (vuelo y fuego) y Ben Grimm (fuerza sobrehumana con cuerpo de roca). Tras obtener sus poderes por radiación espacial, operan públicamente sin identidades secretas y defienden el universo de amenazas como el Doctor Doom.
+        Los 4 Fantásticos son la primera familia de superhéroes de Marvel, nacidos de una exposición a rayos cósmicos durante una misión espacial. Bajo el liderazgo del brillante científico Reed Richards, el equipo utiliza sus asombrosas habilidades no solo para proteger la Tierra de amenazas cósmicas, sino también para explorar los rincones más desconocidos del universo.
       </p>
     </section>
 
-    <div class="section-title" id="creadores">
-      <p class="section-title__eyebrow">Miembros del equipo</p>
+       <div class="section-title" id="creadores">
+      <p class="section-title__eyebrow">La Primera Familia de Marvel</p>
       <h2>Integrantes principales</h2>
     </div>
 
-    <section class="galeria-contenedor">
+    <!-- REEMPLAZA DESDE AQUÍ: Único contenedor purgado sin enlaces fantasmas -->
+    <section class="galeria-contenedor-fantasticos">
         
-        <div class="tarjeta-heroe">
+        <!-- 1. BEN GRIMM (La Mole) - Se clava arriba a la izquierda del todo -->
+        <div class="tarjeta-heroe f4-ben" onclick="window.location.href='personajes/ben_grimm.html';">
             <div class="imagen-contenedor">
-                <img src="../../IM_PERSONAJES/reed richards.jpg" alt="Reed Richards">
+                <img src="../../IM_PERSONAJES/ben_grimm.png" alt="Ben Grimm">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/BEN_GRIMM_COMIC.png" class="img-hover" alt="Ben Grimm Comic">
             </div>
             <div class="info-contenedor">
-                <h2 class="nombre">Reed Richards</h2>
-                <p class="origen">CUERPO ELASTICO</p>
+                <h2 class="nombre">BEN GRIMM</h2>
+                <p class="origen">LA COSA</p>
             </div>
         </div>
 
-        <div class="tarjeta-heroe">
+        <!-- 2. REED RICHARDS - Se posiciona a la derecha de Ben -->
+        <div class="tarjeta-heroe f4-reed" onclick="window.location.href='personajes/reed_richards.html';">
             <div class="imagen-contenedor">
-                <img src="../../IM_PERSONAJES/SUE STORM.jPG" alt="Sue Storm">
+                <img src="../../IM_PERSONAJES/reed_richards.png" alt="Reed Richards">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/REED_RICHARDS_COMIC.png" class="img-hover" alt="Reed Richards Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">REED RICHARDS</h2>
+                <p class="origen">SR. FANTÁSTICO</p>
+            </div>
+        </div>
+
+        <!-- 3. SUE STORM - Se posiciona a la derecha de Reed -->
+        <div class="tarjeta-heroe f4-sue" onclick="window.location.href='personajes/sue_storm.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/sue_storm.png" alt="Sue Storm">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/SUE_STORM_COMIC.png" class="img-hover" alt="Sue Storm Comic">
             </div>
             <div class="info-contenedor">
                 <h2 class="nombre">SUE STORM</h2>
@@ -122,38 +135,43 @@
             </div>
         </div>
 
-        <div class="tarjeta-heroe">
+        <!-- 4. JOHNNY STORM - Se posiciona a la derecha del todo cerrando la fila -->
+        <div class="tarjeta-heroe f4-johnny" onclick="window.location.href='personajes/johnny_storm.html';">
             <div class="imagen-contenedor">
-                  <img src="../../IM_PERSONAJES/Groot.jpg" id="img-groot" alt="Groot">
+                <img src="../../IM_PERSONAJES/john_storm.png" alt="Johnny Storm">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/JOHNY_STORM_COMIC.png" class="img-hover" alt="Johnny Storm Comic">
             </div>
             <div class="info-contenedor">
-                <h2 class="nombre">GROOT</h2>
-                <p class="origen">HUMANOIDE ÁRBOL</p>
+                <h2 class="nombre">JOHNNY STORM</h2>
+                <p class="origen">ANTORCHA HUMANA</p>
             </div>
         </div>
 
-        <div class="tarjeta-heroe">
+        <!-- 5. FRANKLIN RICHARDS (Hijo) - Se posiciona abajo centrado a la izquierda -->
+        <div class="tarjeta-heroe f4-franklin" onclick="window.location.href='personajes/franklin_richards.html';">
             <div class="imagen-contenedor">
-                <img src="../../IM_PERSONAJES/Gamora.jpg" alt="Gamora">
+                <img src="../../IM_PERSONAJES/franklin_richards.png" alt="Franklin Richards">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/FRANKLIN_RICHARDS_COMIC.png" class="img-hover" alt="Franklin Richards Comic">
             </div>
             <div class="info-contenedor">
-                <h2 class="nombre">GAMORA</h2>
-                <p class="origen">GUERRERA LETAL</p>
+                <h2 class="nombre">FRANKLIN RICHARDS</h2>
+                <p class="origen">MUTANTE NIVEL OMEGA</p>
             </div>
         </div>
 
-  
-<div class="tarjeta-heroe tarjeta-drax"> 
-    <div class="imagen-contenedor">
-        <img src="../../IM_PERSONAJES/Drax.jpg" alt="Drax">
-    </div>
-    <div class="info-contenedor">
-        <h2 class="nombre">DRAX</h2>
-        <p class="origen">GUERRERO FUERTE</p>
-    </div>
-</div>
+        <!-- 6. VALERIA RICHARDS (Hija) - Se posiciona abajo centrada a la derecha -->
+        <div class="tarjeta-heroe f4-valeria" onclick="window.location.href='personajes/valeria_richards.html';">
+            <div class="imagen-contenedor">
+                <img src="../../IM_PERSONAJES/valeria_richards.png" alt="Valeria Richards">
+                <img src="../../IM_PERSONAJES/IM_PERSONAJES_COMICS/VALERIA_RICHARDS_COMIC.png" class="img-hover" alt="Valeria Richards Comic">
+            </div>
+            <div class="info-contenedor">
+                <h2 class="nombre">VALERIA RICHARDS</h2>
+                <p class="origen">INTELECTO SUPERIOR</p>
+            </div>
+        </div>
 
-    </section> 
+    </section> <!-- HASTA AQUÍ -->
 
     </main>
     <script>
@@ -186,7 +204,6 @@
       }
     });
   </script>
-  <script src="../../JS/bienvenida.js"></script>
-  <script src="../../JS/auth.js"></script>
+
 </body>
 </html>

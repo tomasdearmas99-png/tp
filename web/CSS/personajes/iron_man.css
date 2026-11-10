@@ -1,0 +1,30 @@
+/* IMPORTAMOS EL LAYOUT BASE UNIVERSAL */
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #0c0405; /* Fondo rojo carmesí Stark ultra profundo */
+    --surface-box: rgba(26, 10, 12, 0.75); /* Paneles con tinte de la armadura Mark 85 */
+    --border-color: #3d1417; /* Bordes de aleación de oro y titanio */
+    --text-primary: #fce8e6;
+    --text-muted: #c78b8e;
+    --stark-gold: #fbbf24; /* Dorado Stark brillante de alto impacto */
+    --marvel-red: #ef4444; /* Brillo del Reactor Arc */
+}
+
+/* LUMINISCENCIA DEL REACTOR ARC */
+.personaje-title-main {
+    text-shadow: 0 0 25px rgba(239, 68, 68, 0.45) !important;
+}
+
+.circulo-avatar-item {
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15) !important;
+}
+
+.circulo-avatar-item:hover {
+    border-color: #fbbf24 !important;
+}
+
+.logo-universo-box {
+    background-color: #ef4444 !important; /* Rojo Stark original */
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.45) !important;
+}

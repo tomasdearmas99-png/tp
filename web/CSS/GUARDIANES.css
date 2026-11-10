@@ -474,3 +474,180 @@ section.contenido p {
 
     transform-origin: center center; 
 }
+
+/* SECCIÓN: GALERÍA DE HÉROES - GUARDIANES DE LA GALAXIA (Estructura balanceada de 4 columnas) */
+.galeria-contenedor { 
+  display: grid; 
+  /* Reducimos de 8 a 4 columnas para que cada tarjeta tenga el doble de espacio horizontal y sea ancha */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; /* Separación estándar muy limpia */ 
+  max-width: 1400px; /* Se expande por casi toda la pantalla eliminando los bordes vacíos */
+  margin: 40px auto 80px; 
+  padding: 0 24px; 
+}
+
+.tarjeta-heroe { 
+  background: var(--surface); 
+  border: 1px solid var(--border); 
+  transition: transform 0.3s ease, border-color 0.3s ease; 
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+}
+
+/* REGLA ESPECIAL: Star-Lord se vuelve el doble de ancho (ocupa 2 columnas) y el doble de alto */
+.tarjeta-heroe:nth-child(1) {
+  grid-column: span 2;      
+  grid-row: span 2; 
+}
+
+.tarjeta-heroe:hover { 
+  transform: translateY(-6px); 
+  border-color: var(--red); 
+}
+
+.imagen-contenedor { 
+  width: 100%; 
+  height: 440px; /* Tus 440px originales para que mantengan la proporción perfecta al ser anchas */
+  overflow: hidden; 
+  border-bottom: 1px solid var(--border); 
+  background-color: #000; 
+  position: relative; /* OBLIGATORIO: Permite que la imagen hover se posicione encima de la normal */
+}
+
+/* Hace que la imagen de Star-Lord llene su nuevo espacio destacado de forma perfecta */
+.tarjeta-heroe:nth-child(1) .imagen-contenedor {
+  height: 100%;
+  flex-grow: 1;
+}
+
+/* ========================================================
+   ESTILOS DE IMÁGENES Y EFECTO HOVER (INTERCAMBIO)
+   ======================================================== */
+
+/* Estilos base para todas las imágenes (normales y de hover) */
+.imagen-contenedor img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  filter: brightness(0.85); 
+  transition: opacity 0.4s ease, filter 0.3s ease; /* Transición suave de opacidad */
+}
+
+/* La imagen de hover se posiciona de forma absoluta oculta por defecto */
+.imagen-contenedor .img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0; /* Totalmente transparente al inicio */
+}
+
+/* Al pasar el cursor por la tarjeta: se oculta la imagen normal y se muestra la de hover */
+.tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) { 
+  opacity: 0; 
+}
+
+.tarjeta-heroe:hover .imagen-contenedor .img-hover { 
+  opacity: 1; 
+  filter: brightness(1.05); 
+}
+
+
+/* ========================================================
+   TEXTOS E INFORMACIÓN
+   ======================================================== */
+
+.info-contenedor { 
+  padding: 16px 12px; 
+  text-align: center; 
+}
+
+.info-contenedor .nombre { 
+  color: var(--ink); 
+  font-family: var(--font-nav); 
+  font-size: 16px; 
+  font-weight: 600; 
+  letter-spacing: 1.5px; 
+  margin-bottom: 4px; 
+  text-transform: uppercase; 
+}
+
+.info-contenedor .origen { 
+  color: var(--foil); 
+  font-family: var(--font-body); 
+  font-size: 11px; 
+  font-weight: 700; 
+  letter-spacing: 1px; 
+  text-transform: uppercase; 
+}
+
+
+/* ========================================================
+   ENCUADRE AJUSTADO INDIVIDUAL (AFECTA A AMBAS IMÁGENES)
+   ======================================================== */
+
+/* 1. STAR-LORD */
+.tarjeta-heroe:nth-child(1) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 2. ROCKET RACCOON */
+.tarjeta-heroe:nth-child(2) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 3. GROOT */
+.tarjeta-heroe:nth-child(3) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 4. GAMORA */
+.tarjeta-heroe:nth-child(4) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 5. DRAX */
+.tarjeta-heroe:nth-child(5) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 6. MANTIS */
+.tarjeta-heroe:nth-child(6) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 7. NÉBULA */
+.tarjeta-heroe:nth-child(7) .imagen-contenedor img {
+  object-position: center center;
+}
+
+/* 8. YONDU */
+.tarjeta-heroe:nth-child(8) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 9. KRAGLIN */
+.tarjeta-heroe:nth-child(9) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 10. ADAM WARLOCK */
+.tarjeta-heroe:nth-child(10) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 11. COSMO */
+.tarjeta-heroe:nth-child(11) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 12. PHYLA */
+.tarjeta-heroe:nth-child(12) .imagen-contenedor img {
+  object-position: center top;
+}
+
+/* 13. BLURP */
+.tarjeta-heroe:nth-child(13) .imagen-contenedor img {
+  object-position: center top;
+}

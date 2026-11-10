@@ -1,0 +1,14 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #040605; /* Negro obsidiana profundo de su traje */
+    --surface-box: rgba(14, 24, 18, 0.7);
+    --border-color: #123d1f; /* Verde heráldico de la muerte */
+    --text-primary: #eaf5ee;
+    --text-muted: #8ca191;
+    --stark-gold: #22c55e; /* Resplandor verde místico de sus necroespadas */
+    --marvel-red: #15803d;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(34, 197, 94, 0.4) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

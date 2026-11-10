@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #040810; /* Fondo azul ártico sombrío */
+    --surface-box: rgba(14, 20, 36, 0.7);
+    --border-color: #1a334d;
+    --text-primary: #f0f4fa;
+    --text-muted: #9ab2c7;
+    --stark-gold: #e11d48; /* Rosa fosforescente del forro de su capucha */
+    --marvel-red: #06b6d4; /* Cian místico de sus zapatillas de ballet */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(225, 29, 72, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

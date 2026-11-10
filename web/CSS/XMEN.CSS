@@ -380,21 +380,30 @@ section.contenido p {
   font-size: 14.5px;
   line-height: 1.6;
 }
-
-.galeria-contenedor {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  max-width: 1180px;
-  margin: 40px auto 80px;
-  padding: 0 24px;
+/* ========================================================
+   GRILLA OMEGA DEFINITIVA: BALANCE MAP BIEN CENTRADO
+   ======================================================== */
+.galeria-contenedor { 
+  display: grid !important; 
+  /* Estructura limpia de 4 columnas horizontales anchas */
+  grid-template-columns: repeat(4, 1fr) !important; 
+  gap: 20px !important; 
+  width: 100% !important;
+  max-width: 1400px !important; /* Se expande por la pantalla entera */
+  margin: 40px auto 80px !important; 
+  padding: 0 24px !important; 
+  box-sizing: border-box !important;
+  clear: both !important;
 }
 
-.tarjeta-heroe {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  cursor: pointer;
+.tarjeta-heroe { 
+  background: var(--surface); 
+  border: 1px solid var(--border); 
+  transition: transform 0.3s ease, border-color 0.3s ease; 
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+  width: 100% !important; 
 }
 
 .tarjeta-heroe:hover {
@@ -402,59 +411,59 @@ section.contenido p {
   border-color: var(--red);
 }
 
-.imagen-contenedor {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
+.imagen-contenedor { 
+  width: 100%; 
+  height: 300px; /* Recuperan los 300px para que no sean flacas ni tubos */
+  overflow: hidden; 
+  border-bottom: 1px solid var(--border); 
+  background-color: #000; 
+  position: relative; 
 }
 
-.imagen-contenedor img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: brightness(0.85);
-  transition: filter 0.3s ease;
+/* ========================================================
+   MAPEO POR COORDENADAS COLOZALES (MÁXIMA PRIORIDAD)
+   ======================================================== */
+
+/* 1. EL PROFESOR X: Fijo en el centro ocupando las columnas 2 y 3, y 2 filas completas de alto */
+.galeria-contenedor .tarjeta-heroe:nth-child(1) {
+  grid-column: 2 / span 2 !important;      
+  grid-row: 1 / span 2 !important; 
+}
+.galeria-contenedor .tarjeta-heroe:nth-child(1) .imagen-contenedor {
+  height: 100% !important;
+  flex-grow: 1 !important;
 }
 
-.tarjeta-heroe:hover .imagen-contenedor img {
-  filter: brightness(1.05);
-}
+/* FILA 1 LATERALES */
+.galeria-contenedor .tarjeta-heroe:nth-child(3) { grid-column: 1 !important; grid-row: 1 !important; } /* Cíclope (Izquierda Arriba) */
+.galeria-contenedor .tarjeta-heroe:nth-child(2) { grid-column: 4 !important; grid-row: 1 !important; } /* Wolverine (Derecha Arriba) */
 
-.info-contenedor {
-  padding: 16px 12px;
-  text-align: center;
-}
+/* FILA 2 LATERALES (Flanquean al Profesor X abajo) */
+.galeria-contenedor .tarjeta-heroe:nth-child(4) { grid-column: 1 !important; grid-row: 2 !important; } /* Tormenta (Izquierda Medio) */
+.galeria-contenedor .tarjeta-heroe:nth-child(5) { grid-column: 4 !important; grid-row: 2 !important; } /* Jean Grey (Derecha Medio) */
 
-.info-contenedor .nombre {
-  color: var(--ink);
-  font-family: var(--font-nav);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-}
+/* FILA 3 EN ADELANTE: Todo el equipo se alinea de forma continua abajo en bloques de 4 */
+.galeria-contenedor .tarjeta-heroe:nth-child(6) { grid-column: 1 !important; grid-row: 3 !important; } /* Bestia */
+.galeria-contenedor .tarjeta-heroe:nth-child(7) { grid-column: 2 !important; grid-row: 3 !important; } /* Rogue */
+.galeria-contenedor .tarjeta-heroe:nth-child(8) { grid-column: 3 !important; grid-row: 3 !important; } /* Gambito */
+.galeria-contenedor .tarjeta-heroe:nth-child(9) { grid-column: 4 !important; grid-row: 3 !important; } /* Ice Man */
 
-.info-contenedor .origen {
-  color: var(--foil);
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+/* ========================================================
+   ESTILOS DE IMÁGENES Y EFECTO HOVER
+   ======================================================== */
+.imagen-contenedor img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  filter: brightness(0.85); 
+  transition: opacity 0.4s ease, filter 0.3s ease; 
 }
+.imagen-contenedor .img-hover { position: absolute; top: 0; left: 0; opacity: 0; }
+.tarjeta-heroe:hover .imagen-contenedor img:not(.img-hover) { opacity: 0; }
+.tarjeta-heroe:hover .imagen-contenedor .img-hover { opacity: 1; filter: brightness(1.05); }
 
-.pie-pagina {
-  width: 100%;
-  text-align: center;
-  padding: 40px 24px;
-  border-top: 1px solid var(--border);
-}
+/* TEXTOS */
+.info-contenedor { padding: 16px 12px; text-align: center; }
+.info-contenedor .nombre { color: var(--ink); font-family: var(--font-nav); font-size: 16px; font-weight: 600; letter-spacing: 1.5px; margin-bottom: 4px; text-transform: uppercase; }
+.info-contenedor .origen { color: var(--foil); font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 
-.pie-pagina p {
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}

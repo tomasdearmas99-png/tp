@@ -1,0 +1,19 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #080304; /* Rojo sangre táctico ultra oscuro */
+    --surface-box: rgba(26, 8, 10, 0.75);
+    --border-color: #4a1418; /* Bordes rojo carmesí deadpool */
+    --text-primary: #fff5f5;
+    --text-muted: #c98f92;
+    --stark-gold: #ef4444; /* Resplandor rojo fosforescente para el hover */
+    --marvel-red: #991b1b;
+}
+
+.personaje-title-main { 
+    text-shadow: 0 0 25px rgba(239, 68, 68, 0.5) !important; 
+}
+
+.circulo-avatar-item:hover { 
+    border-color: var(--stark-gold) !important; 
+}
