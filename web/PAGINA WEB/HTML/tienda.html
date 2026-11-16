@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrias Stark - Tienda de Cosméticos</title>
+  <!-- Rutas relativas subiendo dos niveles para llegar a la carpeta CSS -->
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/tienda.css">
+</head>
+<body class="tienda-body">
+
+  <header class="topbar">
+    <div class="topbar__left">
+      <span class="wordmark">STARK TECH</span>
+    </div>
+    <div class="topbar__balances">
+      <div class="balance-item">
+        <span class="balance-label">Créditos Stark:</span>
+        <!-- Se rellenará automáticamente al cargar la sesión -->
+        <span id="saldo-stark" class="balance-valor">---</span>
+      </div>
+    </div>
+    <nav class="topbar__links">
+      <!-- Corregido: Sube dos niveles exactos para volver de forma perfecta al index.php de tu web -->
+      <a href="../../../index.html">Inicio</a>
+      <a href="../../PAGINA WEB/HTML/perfil.php">Mi Perfil</a>
+    </nav>
+  </header>
+
+  <main class="tienda-main">
+    <div class="hero-band">
+      <p class="hero-band__eyebrow">División de Personalización</p>
+      <h1>TIENDA DE <span>COSMÉTICOS</span></h1>
+    </div>
+
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <section class="tienda-grid" id="productos-contenedor">
+      <!-- Los productos se inyectarán aquí dinámicamente desde la base de datos -->
+      <p class="cargando-texto">Iniciando interfaz de Stark Industries...</p>
+    </section>
+  </main>
+
+  <script>
+    // Lógica interactiva para comunicarse con la base de datos mediante PHP
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarTienda();
+    });
+
+    function cargarTienda() {
+        // Hacemos una petición al backend para obtener los cosméticos y el saldo
+        fetch('../../PHP/obtener_tienda.php')
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    document.getElementById('productos-contenedor').innerHTML = `<p class='error-texto'>${data.error}</p>`;
+                    return;
+                }
+                
+                // Actualizar saldo superior
+                document.getElementById('saldo-stark').innerText = data.saldo_stark;
+
+                // Renderizar las tarjetas de cosméticos
+                let html = '';
+                data.productos.forEach(prod => {
+                    let previewContent = '';
+
+                    // CONDICIONAL LÓGICO: Evaluamos si es un TÍTULO o un cosmético visual (Marco/Fondo)
+                    if (prod.categoria.toLowerCase() === 'titulo') {
+                        
+                        // Caso A: Si es Hechicero Supremo (ID 3), le damos un degradé mágico colorido
+                        if (parseInt(prod.id_item) === 3) {
+                            previewContent = `
+                                <div style="font-family: 'Segoe UI', Impact, sans-serif; font-size: 20px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px; line-height: 1.2;
+                                            background: linear-gradient(45deg, #ff4500, #ff00ff, #7000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+                                    ${prod.nombre}
+                                </div>
+                            `;
+                        } 
+                        // Caso B: Si es Vengador Legendario (ID 4), le aplicamos un dorado Stark metalizado imponente
+                        else if (parseInt(prod.id_item) === 4) {
+                            previewContent = `
+                                <div style="font-family: 'Segoe UI', Impact, sans-serif; font-size: 20px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px; line-height: 1.2;
+                                            background: linear-gradient(to bottom, #ffe066 0%, #f5b041 50%, #c4b494 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">
+                                    ${prod.nombre}
+                                </div>
+                            `;
+                        } 
+                        // Fallback para cualquier otro título futuro
+                        else {
+                            previewContent = `<div style="font-size: 18px; font-weight: bold; color: #c4b494; text-transform: uppercase;">${prod.nombre}</div>`;
+                        }
+
+                    } else {
+                        // CORRECCIÓN AUTOMÁTICA: Si es el ID 1 busca Ojo de Halcón, sino usa item_X.png de forma nativa
+                        let rutaImagen = (parseInt(prod.id_item) === 1) ? "../../IM_COSMETICOS/Marco_Ojo_Halcon_Cosmetico.png" : `../../IM_COSMETICOS/item_${prod.id_item}.png`;
+                        previewContent = `<img src="${rutaImagen}" alt="${prod.nombre}" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='../../IM_BUSQUEDA/LOGITO.jpg';">`;
+                    }
+
+                    html += `
+                        <article class="cosmetico-card">
+                            <div class="cosmetico-badge ${prod.categoria.toLowerCase()}">${prod.categoria}</div>
+                            
+                            <!-- CAJA DE LECTURA DINÁMICA: Renderiza texto estilizado para Títulos o Imagen para Marcos/Fondos -->
+                            <div class="cosmetico-preview-box" style="width: 100%; height: 140px; display: flex; justify-content: center; align-items: center; margin-top: 15px; background-color: #09090d; border-radius: 6px; overflow: hidden; padding: 10px; box-sizing: border-box;">
+                                ${previewContent}
+                            </div>
+
+                            <h3 class="cosmetico-nombre" style="font-size: 14px; margin: 12px 0 4px 0; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px;">${prod.nombre}</h3>
+                            <div class="cosmetico-precio" style="font-size: 12px; color: #c4b494; font-weight: bold; margin-bottom: 16px;">${prod.precio_monedas} Créditos</div>
+                            <button class="btn-comprar" onclick="comprarItem(${prod.id_item})">Adquirir</button>
+                        </article>
+                    `;
+                });
+                document.getElementById('productos-contenedor').innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById('productos-contenedor').innerHTML = "<p class='error-texto'>Error crítico al conectar con los sistemas de Stark Tech.</p>";
+                console.error("Fallo de comunicación:", err);
+            });
+    }
+
+    function comprarItem(idItem) {
+        let formData = new FormData();
+        // Coincide exactamente con el $_POST['id_item'] que procesa el backend PHP
+        formData.append('id_item', idItem);
+
+        fetch('../../PHP/comprar_cosmetico.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(mensaje => {
+            alert(mensaje);
+            cargarTienda(); // Refrescar balances y productos adquiridos de forma automática
+        });
+    }
+  </script>
+</body>
+</html>

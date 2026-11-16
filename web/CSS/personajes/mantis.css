@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #040805; /* Fondo verde jade/insecto */
+    --surface-box: rgba(12, 24, 16, 0.65);
+    --border-color: #1e3a24;
+    --text-primary: #eef7f0;
+    --text-muted: #8ca391;
+    --stark-gold: #a3e635; /* Brillo verde lima fluorescente de antenas empáticas */
+    --marvel-red: #16a34a;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(163, 230, 53, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

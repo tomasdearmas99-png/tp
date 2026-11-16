@@ -1,0 +1,13 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #08030b; /* Violeta galáctico muy oscuro */
+    --surface-box: rgba(22, 10, 32, 0.7);
+    --border-color: #401a54; /* Tinte cinético púrpura */
+    --text-primary: #fbf5fe;
+    --text-muted: #b699bd;
+    --stark-gold: #c084fc; /* Brillo fotónico lila binario de sus manos al pelear */
+    --marvel-red: #a855f7;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(192, 132, 252, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

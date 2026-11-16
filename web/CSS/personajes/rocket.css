@@ -1,0 +1,14 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #0a0604; /* Naranja/marrón sucio chatarrero */
+    --surface-box: rgba(28, 18, 12, 0.7);
+    --border-color: #3b2318; /* Óxido industrial */
+    --text-primary: #f5ebe6;
+    --text-muted: #a8948c;
+    --stark-gold: #f97316; /* Fuego de propulsores y monos naranjas */
+    --marvel-red: #ea580c;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(249, 115, 22, 0.4) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

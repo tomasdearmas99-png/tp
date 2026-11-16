@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #0b0d14; /* Blanco azulado celestial oscuro */
+    --surface-box: rgba(22, 26, 40, 0.7);
+    --border-color: #2e3a54;
+    --text-primary: #f0f4fc;
+    --text-muted: #9ab0c2;
+    --stark-gold: #c9a227; /* Dorado Stark / Halo angelical */
+    --marvel-red: #3b82f6;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(201, 162, 39, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

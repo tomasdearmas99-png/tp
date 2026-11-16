@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #04060c; /* Azul/gris heráldico Kree muy oscuro */
+    --surface-box: rgba(14, 20, 36, 0.7);
+    --border-color: #1a2a4e;
+    --text-primary: #e6efff;
+    --text-muted: #8da2bd;
+    --stark-gold: #a855f7; /* Resplandor púrpura de la Gema del Poder inyectada en su martillo */
+    --marvel-red: #1d4ed8;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(168, 85, 247, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

@@ -1,0 +1,14 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #080303; /* Negro militar/cuero oscuro */
+    --surface-box: rgba(26, 10, 10, 0.75);
+    --border-color: #4a1414; /* Bordes rojo Hydra */
+    --text-primary: #fcebeb;
+    --text-muted: #c78c8c;
+    --stark-gold: #ed1d24; /* Color rojo de su rostro */
+    --marvel-red: #991b1b;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(237, 29, 36, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

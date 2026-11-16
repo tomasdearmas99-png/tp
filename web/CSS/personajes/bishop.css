@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #0a0604; /* Rojo/marrón gastado militar distópico */
+    --surface-box: rgba(28, 18, 12, 0.7);
+    --border-color: #4a2818;
+    --text-primary: #f5ebe6;
+    --text-muted: #a8938a;
+    --stark-gold: #fb923c; /* Destello de energía cargada naranja neón */
+    --marvel-red: #ef4444;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(251, 146, 60, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

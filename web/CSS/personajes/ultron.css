@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #070304; /* Rojo cibernético oscuro balístico */
+    --surface-box: rgba(22, 12, 14, 0.75);
+    --border-color: #3b1418; /* Acero pesado quemado */
+    --text-primary: #f5ebeb;
+    --text-muted: #a89193;
+    --stark-gold: #ef4444; /* Luces rojas de sus visores ópticos y reactores */
+    --marvel-red: #be123c;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(239, 68, 68, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

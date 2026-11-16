@@ -1,0 +1,14 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #080706; /* Gris ceniza de sus tatuajes cicatrizados */
+    --surface-box: rgba(24, 20, 18, 0.7);
+    --border-color: #4a1c14; /* Rojo de sus marcas tribales biológicas */
+    --text-primary: #f5ebe6;
+    --text-muted: #a8948a;
+    --stark-gold: #ef4444; /* Brillo carmesí furia */
+    --marvel-red: #991b1b;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(239, 68, 68, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

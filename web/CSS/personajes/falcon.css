@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #09090e; /* Gris militar oscuro */
+    --surface-box: rgba(22, 22, 30, 0.65);
+    --border-color: #313142; /* Acero balístico */
+    --text-primary: #f0f0f5;
+    --text-muted: #8e8e9c;
+    --stark-gold: #38bdf8; /* Azul tecnológico de Redwing */
+    --marvel-red: #ef4444; /* Detalles del traje militar */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(239, 68, 68, 0.4) !important; }
+.circulo-avatar-item:hover { border-color: var(--marvel-red) !important; }

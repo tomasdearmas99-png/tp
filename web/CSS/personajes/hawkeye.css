@@ -1,0 +1,29 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #08050c; /* Tinte morado táctico muy oscuro */
+    --surface-box: rgba(18, 12, 28, 0.65); /* Contenedores púrpura apagados */
+    --border-color: #2e1d4d; /* Bordes violetas tácticos */
+    --text-primary: #f3effa;
+    --text-muted: #9686b3;
+    --stark-gold: #a855f7; /* Reemplazamos por el púrpura Hawkeye */
+    --marvel-red: #7e22ce; 
+}
+
+.personaje-title-main {
+    text-shadow: 0 0 25px rgba(168, 85, 247, 0.45) !important;
+}
+.circulo-avatar-item {
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15) !important;
+}
+.circulo-avatar-item:hover {
+    border-color: #a855f7 !important;
+}
+.btn-leer-mas, .btn-leer-mas:hover {
+    border-color: #a855f7 !important;
+    color: #a855f7 !important;
+}
+.btn-leer-mas:hover {
+    background-color: #a855f7 !important;
+    color: #08050c !important;
+}

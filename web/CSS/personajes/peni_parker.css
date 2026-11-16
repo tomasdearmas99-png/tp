@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #03040a; /* Fondo azul tecnológico cian muy oscuro */
+    --surface-box: rgba(14, 16, 32, 0.7);
+    --border-color: #1a2a4e;
+    --text-primary: #f0f4fa;
+    --text-muted: #96a6b8;
+    --stark-gold: #f43f5e; /* Resplandor rosa neón de la interfaz del robot */
+    --marvel-red: #e11d48;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(244, 63, 94, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

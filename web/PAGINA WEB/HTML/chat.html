@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal Stark - Chat IA</title>
+  <!-- Vinculamos tu estilo general de la portada y el específico del chat -->
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/chat.css">
+</head>
+<body class="chat-body">
+
+  <header class="topbar-chat">
+    <div class="topbar-left">
+      <!-- Mantenemos tu directiva exacta de enlace de retorno para más tarde -->
+      <a href="../../../index.html">← Regresar</a>
+    </div>
+    <div class="topbar-center">
+      <span class="wordmark-ia">STARK_CORE // INTERFAZ_IA</span>
+    </div>
+    <div class="topbar-right">
+      <a href="perfil.php">Mi Perfil</a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR ANCLA DE BOTPRESS 
+       El script de la IA buscará inyectar la terminal completa exactamente aquí dentro -->
+  <main class="chat-contenedor-principal" id="bp-webchat-container">
+    <div class="ia-cargando-servidores">
+      <p class="pensando-puntos">Sincronizando la matriz del Stark Core... Cargando protocolos de J.A.R.V.I.S.</p>
+    </div>
+  </main>
+
+  <!-- ========================================================
+       SCRIPTS OFICIALES DE INTEGRACIÓN DE TU IA (BOTPRESS V5)
+       ======================================================== -->
+  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/11/07/00/20261107004217-AA5DG7YE.js" defer></script>
+
+  <!-- Inicialización nativa para incrustar el chat en tu propia caja negra -->
+  <script>
+    window.botpress.init({
+      "botId": "0ebc4cf8-c8c6-43d7-bb0a-44cfd3ff70c6",
+      "configuration": {
+        "version": "v2",
+        "botName": "J.A.R.V.I.S.",
+        "botDescription": "Resuelve preguntas sobre Marvel y orienta sobre las secciones del sitio.",
+        "website": {},
+        "email": {},
+        "phone": {},
+        "termsOfService": {},
+        "privacyPolicy": {},
+        "feedbackEnabled": true,
+        "allowFileUpload": true,
+        "soundEnabled": true,
+        "conversationHistory": true,
+        "homePageEnabled": true,
+        "welcomeHeading": "Sistemas en línea, Señor",
+        "welcomeSubtitle": "¿Por dónde desea que comencemos la investigación hoy?",
+        "conversationStartersEnabled": false,
+        "conversationStarters": [],
+        "conversationStartersDisplayStyle": "cards",
+        "citationsEnabled": true,
+        /* Forzamos que se incruste directamente dentro de tu contenedor HTML principal */
+        "embeddedChatId": "bp-webchat-container"
+      },
+      "clientId": "157c75f1-5540-4ea6-8524-b8303ea6fd6d"
+    });
+  </script>
+</body>
+</html>

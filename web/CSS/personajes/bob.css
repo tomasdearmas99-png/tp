@@ -1,0 +1,15 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #0d0803; /* Fondo dorado cósmico quemado ultra oscuro */
+    --surface-box: rgba(30, 22, 10, 0.75);
+    --border-color: #543f1a; /* Oro bruñido místico */
+    --text-primary: #fff8eb;
+    --text-muted: #bd9e8d;
+    --stark-gold: #eab308; /* Resplandor dorado de la energía de Sentry */
+    --marvel-red: #be123c;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(234, 179, 8, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

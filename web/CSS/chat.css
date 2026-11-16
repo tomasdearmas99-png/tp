@@ -1,0 +1,73 @@
+/* ========================================================
+   TERMINAL IA - CONFIGURACIÓN DE INTEGRACIÓN DE INYECCIÓN
+   ======================================================== */
+.chat-body {
+    background-color: #0c0c0c !important; /* Mismo fondo negro de tu style.css */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.topbar-chat {
+    background-color: #111111;
+    border-bottom: 1px solid #2a2a2a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.topbar-chat a {
+    color: #aaa;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.topbar-chat a:hover { color: #ffffff; }
+
+.wordmark-ia {
+    color: #e62429; /* Rojo Marvel distintivo */
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* Caja contenedora donde se incrusta Botpress v5 */
+.chat-contenedor-principal {
+    max-width: 900px;
+    margin: 50px auto 0 auto;
+    height: calc(100vh - 50px);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Estilo del mensaje de carga temporal de los servidores */
+.ia-cargando-servidores {
+    text-align: center;
+    color: #555;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* Modificadores globales para la inyección de la terminal flotante */
+#bp-webchat-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: 1px solid #2a2a2a !important; /* Mismo borde fino oscuro de tu style.css */
+    border-radius: 8px !important;
+    background-color: #0c0c0c !important;
+}

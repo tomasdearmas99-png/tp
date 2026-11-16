@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stan Lee | Marvel</title>
+  <link rel="icon" type="image/png" href="web/IM_BUSQUEDA/icono.jpg">
+  <link rel="stylesheet" href="../../CSS/martin_goodman.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <span class="wordmark">MARVEL</span>
+    <a class="topbar__back" href="../../../index.html">Volver al menú</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="hero__subtitle">El fundador de Marvel Comics</p>
+        <h1 class="hero__name">Martin Goodman</h1>
+        <p class="hero__bio">
+         Martin Goodman (1908-1992) fundó en 1939 Timely Comics, la editorial que años más tarde se convertiría en Marvel. Como editor y dueño de la empresa, se encargó de financiar, impulsar y publicar a los primeros grandes héroes de la Edad de Oro, dejando el camino preparado para la revolución de los años 60.
+        </p>
+        <dl class="hero__meta">
+          <div><dt>Rol</dt><dd>Editor/Fundador</dd></div>
+          <div><dt>Etapa</dt><dd>Edad de Oro</dd></div>
+        </dl>
+      </div>
+
+      <figure class="hero__portrait">
+        <img src="../../IM_CREADORES/Martin_Goodman_Creador_Comic.jpeg" alt="Retrato de Martin Goodman">
+      </figure>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Creaciones</h2>
+      <div class="tabs" id="tabs"></div>
+      <div id="paneles"></div>
+    </section>
+  </main>
+
+
+  <script>
+    const COMICS = '../../IM_PERSONAJES/IM_PERSONAJES_COMICS/';
+
+    const creaciones = [
+      {
+        nombre: 'Capitan America', tag: 'Captain America Comics #1, 1941', img: 'CAPITAN_AMERICA_COMIC.JPEG',
+        texto: 'Un joven rechazado por el ejercito que es transformado por el suero del Super Soldado. Convertido en el maximo defensor de la libertad, lidera la batalla en la Segunda Guerra Mundial y se transforma en el primer exito de ventas en la historia de la editorial.'
+      },
+      {
+        nombre: 'Antorcha Humana', tag: 'Marvel Comics #1, 1939.', img: 'ANTORCHA_HUMANA_COMIC.jpeg',
+        texto: 'Un androide creado en un laboratorio que posee la capacidad de envolverse en llamas y volar. Convertido en uno de los primeros defensores de la humanidad, lucha contra el crimen y las fuerzas del mal, marcando el inicio de la era de los superhéroes de la editorial en 1939.'
+      },
+      {
+        nombre: 'Namor el Sub-Mariner', tag: 'Marvel Comics #1, 1939', img: 'NAMOR_COMIC.jpeg',
+        texto: 'El temperamental príncipe de la Atlántida, nacido de la unión entre una humana y un atlante. Poseedor de una fuerza sobrehumana y la capacidad de volar, protege ferozmente el océano de las amenazas externas, convirtiéndose en el primer antihéroe y mutante de la historia de los cómics.',
+        
+      },
+      {
+        nombre: 'Invasor Enmascarado', tag: 'Marvel Comics #1, 1939.', img: 'INVASOR_ENMASCARADO_COMIC.jpeg',
+        texto: 'Un hábil tirador y jinete fugitivo de la justicia que oculta su identidad tras una máscara. Acompañado por su fiel caballo, recorre el viejo oeste defendiendo a los inocentes y combatiendo a los forajidos, marcando la cuota de wéstern exigida en el primer cómic de la editorial.',
+
+      },
+
+    ];
+
+    const tabs = document.getElementById('tabs');
+    const paneles = document.getElementById('paneles');
+
+    creaciones.forEach((c, i) => {
+      const tab = document.createElement('button');
+      tab.className = 'tab';
+      tab.title = c.nombre;
+      tab.innerHTML = '<img src="' + COMICS + c.img + '" alt="' + c.nombre + '">';
+      tab.onclick = () => seleccionar(i);
+      tabs.appendChild(tab);
+
+      const panel = document.createElement('div');
+      panel.className = 'panel';
+      panel.innerHTML =
+        '<div class="panel__art"><img src="' + COMICS + c.img + '" alt="' + c.nombre + '"></div>' +
+        '<div><p class="panel__tag">' + c.tag + '</p>' +
+        '<h3 class="panel__name">' + c.nombre + '</h3>' +
+        '<p>' + c.texto + '</p>' +
+        '<p class="panel__creators">' + c.autores + '</p></div>';
+      paneles.appendChild(panel);
+    });
+
+    function seleccionar(i) {
+      [...tabs.children].forEach((t, k) => t.setAttribute('aria-selected', k === i));
+      [...paneles.children].forEach((p, k) => p.hidden = k !== i);
+    }
+
+    seleccionar(0);
+  </script>
+</body>
+</html>

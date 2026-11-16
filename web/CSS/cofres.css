@@ -1,0 +1,214 @@
+/* ========================================================
+   ESTILOS PREMIUM DE SUMINISTROS Y ANIMACIÓN DE APERTURA
+   ======================================================== */
+.cofres-body {
+    background-color: #0c0c0c !important;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.topbar-cofres {
+    background-color: #111111;
+    border-bottom: 1px solid #2a2a2a;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+.topbar-cofres a {
+    color: #aaa;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.topbar-cofres a:hover { color: #fff; }
+
+.portal-contenedor {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+/* Grilla de selección de cofres */
+.tienda-cofres-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.cofre-comprar-card {
+    background-color: #111116;
+    border: 1px solid #1c1c24;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    transition: transform 0.2s, border-color 0.2s;
+}
+.cofre-comprar-card:hover { transform: translateY(-4px); }
+.cofre-comprar-card.comun:hover { border-color: #64748b; }
+.cofre-comprar-card.epico:hover { border-color: #a855f7; }
+.cofre-comprar-card.legendario:hover { border-color: #eab308; }
+
+.cofre-preview-box {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.cofre-preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+.cofre-card-titulo { font-size: 16px; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+.cofre-card-prob { font-size: 11px; color: #666; margin: 0 0 20px 0; font-weight: 600; }
+
+.btn-adquirir-cofre, .btn-trigger-revelar, .btn-volver-boveda-action {
+    width: 100%;
+    background-color: #1a1a24;
+    border: 1px solid #2b2b3a;
+    color: #fff;
+    padding: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.btn-adquirir-cofre:hover { background-color: #e62429; border-color: #e62429; }
+
+/* ========================================================
+   CINEMÁTICA DE APERTURA (ANIMACIONES)
+   ======================================================== */
+.pantalla-apertura-cinematica {
+    max-width: 450px;
+    margin: 40px auto;
+    background-color: #111116;
+    border: 1px solid #1c1c24;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+}
+
+.cofre-imagen-flotante {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin: 0 auto 30px auto;
+    display: block;
+}
+
+/* Efecto latido continuo en espera */
+.latido-espera {
+    animation: latidoEfecto 1.5s infinite ease-in-out;
+}
+@keyframes latidoEfecto {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.06); filter: brightness(1.2); }
+}
+
+/* Efecto estallido rápido al abrir */
+.explosion-apertura {
+    animation: estallidoEfecto 0.6s forwards ease-in;
+}
+@keyframes estallidoEfecto {
+    0% { transform: scale(1); filter: brightness(1) contrast(1); }
+    50% { transform: scale(1.3) rotate(5deg); filter: brightness(2) contrast(1.5); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.control-apertura-caja { margin-top: 20px; }
+.btn-trigger-revelar { background-color: #e62429; border-color: #e62429; font-size: 14px; padding: 14px; }
+.btn-trigger-revelar:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ========================================================
+   DISEÑO EXCLUSIVO DE LA CARTA REVELADA
+   ======================================================== */
+.revelado-final-box {
+    animation: entradaCarta 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+@keyframes entradaCarta {
+    from { transform: scale(0.6) rotateX(-30deg); opacity: 0; }
+    to { transform: scale(1) rotateX(0); opacity: 1; }
+}
+
+.carta-marvel-container {
+    width: 240px;
+    height: 340px;
+    background-color: #181822;
+    border: 2px solid #2d2d3f;
+    border-radius: 12px;
+    margin: 0 auto 30px auto;
+    padding: 16px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+.carta-rareza-banner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+/* Bordes y brillos dinámicos de naipes */
+.carta-marvel-container.comun { border-color: #475569; }
+.carta-marvel-container.comun .carta-rareza-banner { background-color: #475569; }
+
+.carta-marvel-container.epica { border-color: #7c3aed; box-shadow: 0 0 15px rgba(124, 58, 237, 0.3); }
+.carta-marvel-container.epica .carta-rareza-banner { background-color: #7c3aed; }
+
+.carta-marvel-container.legendaria { border-color: #ca8a04; box-shadow: 0 0 25px rgba(202, 138, 4, 0.5); }
+.carta-marvel-container.legendaria .carta-rareza-banner { background-color: #ca8a04; }
+
+.carta-wrapper-img {
+    width: 100%;
+    height: 200px;
+    background-color: #0c0c10;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.03);
+    margin-top: 12px;
+}
+.carta-wrapper-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.carta-titulo-display { font-size: 15px; font-weight: 800; margin: 14px 0 8px 0; text-transform: uppercase; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.carta-stats-indicador {
+    display: flex;
+    justify-content: space-around;
+    background-color: #0c0c10;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+.stat-atk { color: #ef4444; }
+.stat-def { color: #3b82f6; }
+
+.btn-volver-boveda-action { background-color: #222; border-color: #333; margin-top: 10px; }
+
+.btn-volver-boveda-action:hover { background-color: #fff; color: #000; border-color: #fff; }

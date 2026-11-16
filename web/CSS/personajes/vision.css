@@ -1,0 +1,13 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #050a06; /* Tinte verde vibranium ultra oscuro */
+    --surface-box: rgba(14, 26, 18, 0.65);
+    --border-color: #1e3a24; /* Verde esmeralda sintenoide */
+    --text-primary: #eaf5ed;
+    --text-muted: #8ca392;
+    --stark-gold: #eab308; /* Resplandor amarillo de la Gema de la Mente */
+    --marvel-red: #dc2626; /* Capa carmesí */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(234, 179, 8, 0.5) !important; }
+.circulo-avatar-item { box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.15) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

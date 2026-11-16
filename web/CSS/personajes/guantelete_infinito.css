@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #0b0904; /* Oro místico forjado ultra oscuro */
+    --surface-box: rgba(26, 22, 10, 0.7);
+    --border-color: #544316;
+    --text-primary: #fffbeb;
+    --text-muted: #bdad8c;
+    --stark-gold: #fbbf24; /* Resplandor dorado de la forja */
+    --marvel-red: #be123c;
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(251, 191, 36, 0.5) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }

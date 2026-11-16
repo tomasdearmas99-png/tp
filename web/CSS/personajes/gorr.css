@@ -1,0 +1,15 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #050506; /* Negro ceniza absoluto / Sin luz */
+    --surface-box: rgba(18, 18, 20, 0.8);
+    --border-color: #222226; /* Gris ceniza muerta */
+    --text-primary: #f0f0f2;
+    --text-muted: #8e8e94;
+    --stark-gold: #fbbf24; /* Color ámbar de sus ojos corrompidos por la espada */
+    --marvel-red: #1c1917;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(251, 191, 36, 0.3) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

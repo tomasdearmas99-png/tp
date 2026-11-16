@@ -1,0 +1,15 @@
+@import url('capitan_america.css');
+
+:root {
+    --bg-dark: #06080a; /* Negro táctico militar de espionaje */
+    --surface-box: rgba(15, 20, 26, 0.7);
+    --border-color: #242b35; /* Gris acero sigiloso */
+    --text-primary: #f1f3f5;
+    --text-muted: #8a929a;
+    --stark-gold: #38bdf8; /* Brillo cian táctico de sus bastones de choque */
+    --marvel-red: #b91c1c;
+}
+
+.personaje-title-main { text-shadow: 0 0 25px rgba(56, 189, 248, 0.45) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
+

@@ -1,0 +1,12 @@
+@import url('capitan_america.css');
+:root {
+    --bg-dark: #050507; /* Camuflaje gris oscuro mate */
+    --surface-box: rgba(15, 15, 18, 0.75);
+    --border-color: #22222b; /* Acero pesado */
+    --text-primary: #e6e6eb;
+    --text-muted: #858594;
+    --stark-gold: #94a3b8; /* Platino plateado */
+    --marvel-red: #ef4444; /* Luces de los visores de combate */
+}
+.personaje-title-main { text-shadow: 0 0 25px rgba(239, 68, 68, 0.3) !important; }
+.circulo-avatar-item:hover { border-color: var(--stark-gold) !important; }
