@@ -16,8 +16,8 @@ if (!empty($_SESSION['id_usuario'])) {
 
 $host = 'localhost';
 $db   = 'marvel';
-$user = 'root';
-$pass = '';
+$user = 'phpmyadmin';
+$pass = 'RedesInformaticas';
 
 
 try {
